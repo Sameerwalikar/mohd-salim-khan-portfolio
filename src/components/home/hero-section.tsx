@@ -50,7 +50,7 @@ export function HeroSection() {
 
           {/* Name */}
           <FadeUp delay={0.1}>
-            <h1 className="font-serif text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-[3.5rem] lg:text-[3.75rem]">
+            <h1 className="font-serif text-4xl font-medium leading-[1.12] tracking-tight text-foreground sm:text-5xl md:text-[3.5rem] lg:text-[3.75rem]">
               Prof. Dr. Mohammed
               <br />
               <span className="text-gold">Salim B. Khan</span>
@@ -70,7 +70,7 @@ export function HeroSection() {
           {/* Headline Quote */}
           <FadeUp delay={0.2}>
             <blockquote className="mt-8 border-l-2 border-gold/30 pl-5">
-              <p className="max-w-lg font-serif text-xl italic leading-relaxed text-foreground/80 md:text-2xl">
+              <p className="max-w-lg font-serif text-xl italic leading-relaxed text-foreground/80 md:text-[1.35rem]">
                 &ldquo;Advancing Legal Education Through Research, Innovation and Leadership&rdquo;
               </p>
             </blockquote>

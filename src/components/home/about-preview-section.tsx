@@ -105,7 +105,7 @@ export function AboutPreviewSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-4 font-serif text-4xl font-semibold tracking-tight text-white md:text-5xl"
+            className="mt-4 font-serif text-4xl font-medium tracking-tight text-white md:text-5xl"
           >
             About Me
           </motion.h2>
@@ -172,7 +172,7 @@ export function AboutPreviewSection() {
               {/* Progressive Blur Overlay */}
               <ProgressiveBlur visible={isHovered}>
                 <div className="space-y-3">
-                  <h3 className="font-serif text-lg font-semibold text-white md:text-xl">
+                  <h3 className="font-serif text-lg font-medium text-white md:text-xl">
                     Prof. Dr. Mohammed Salim B. Khan
                   </h3>
                   <div className="flex flex-wrap gap-2">
@@ -223,7 +223,7 @@ export function AboutPreviewSection() {
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.12 }}
                   className="group"
                 >
-                  <h3 className="mb-2 flex items-center gap-2 font-serif text-lg font-semibold text-white">
+                  <h3 className="mb-2 flex items-center gap-2 text-lg font-semibold text-white">
                     <span className="inline-block h-1 w-1 rounded-full bg-gold/60" />
                     {section.title}
                   </h3>
@@ -273,7 +273,7 @@ export function AboutPreviewSection() {
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.03] to-transparent transition-transform duration-700 group-hover:translate-x-full" />
 
                 <Icon className="mb-3 h-5 w-5 text-gold/70 transition-all duration-300 group-hover:rotate-[8deg] group-hover:scale-110 group-hover:text-gold" />
-                <p className="font-serif text-2xl font-bold leading-none text-white md:text-3xl">
+                <p className="text-2xl font-bold leading-none text-white md:text-3xl">
                   {item.value}
                 </p>
                 <p className="mt-1.5 text-xs font-medium uppercase tracking-wider text-slate-400">

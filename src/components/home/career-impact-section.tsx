@@ -142,7 +142,7 @@ export function CareerImpactSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-4 font-serif text-4xl font-semibold tracking-tight text-white md:text-5xl"
+            className="mt-4 font-serif text-4xl font-medium tracking-tight text-white md:text-5xl"
           >
             Career Impact
           </motion.h2>
@@ -234,7 +234,7 @@ export function CareerImpactSection() {
                   {/* Number */}
                   <motion.p
                     className={cn(
-                      "font-serif font-bold leading-none",
+                      "font-bold leading-none",
                       "bg-gradient-to-br from-gold via-[#e0c97d] to-gold/80 bg-clip-text text-transparent",
                       "drop-shadow-[0_0_12px_rgba(201,168,106,0.2)]",
                       isFeatured

@@ -62,7 +62,7 @@ export function FeaturedAchievementsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-4 font-serif text-3xl font-semibold tracking-tight text-white md:text-4xl lg:text-[2.75rem]"
+            className="mt-4 font-serif text-3xl font-medium tracking-tight text-white md:text-4xl lg:text-[2.75rem]"
           >
             Featured Achievements
           </motion.h2>
@@ -130,7 +130,7 @@ export function FeaturedAchievementsSection() {
                   <Star className="h-3 w-3" />
                   {heroAward.year}
                 </p>
-                <h3 className="mt-2 font-serif text-2xl font-semibold text-white md:text-3xl">
+                <h3 className="mt-2 font-serif text-2xl font-medium text-white md:text-3xl">
                   {heroAward.title}
                 </h3>
                 <p className="mt-3 text-base font-medium text-slate-200">
@@ -180,7 +180,7 @@ export function FeaturedAchievementsSection() {
                   </span>
                 </div>
 
-                <h4 className="font-serif text-lg font-semibold leading-snug text-white transition-colors duration-300 group-hover:text-gold/90">
+                <h4 className="text-lg font-semibold leading-snug text-white transition-colors duration-300 group-hover:text-gold/90">
                   {award.title}
                 </h4>
 

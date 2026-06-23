@@ -79,7 +79,7 @@ export function CurrentPositionSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-4 font-serif text-3xl font-semibold tracking-tight text-white md:text-4xl lg:text-[2.75rem]"
+            className="mt-4 font-serif text-3xl font-medium tracking-tight text-white md:text-4xl lg:text-[2.75rem]"
           >
             Current Position
           </motion.h2>
@@ -131,7 +131,7 @@ export function CurrentPositionSection() {
               </div>
 
               {/* Title — primary focus */}
-              <h3 className="font-serif text-2xl font-semibold text-white md:text-3xl">
+              <h3 className="font-serif text-2xl font-medium text-white md:text-3xl">
                 {currentPosition.title}
               </h3>
 

@@ -106,10 +106,10 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
               animate={{ opacity: 1, scale: 0.75 }}
               className="flex flex-col items-center"
             >
-              <h1 className="glow-text font-serif text-6xl font-bold tracking-[0.3em] text-gold md:text-8xl">
+              <h1 className="glow-text font-serif text-6xl font-medium tracking-[0.08em] text-gold md:text-8xl">
                 {profile.initials}
               </h1>
-              <p className="mt-4 text-2xl tracking-widest text-gold/70 uppercase">
+              <p className="mt-4 text-2xl tracking-wide text-gold/70 uppercase">
                 Academic Legacy
               </p>
             </motion.div>

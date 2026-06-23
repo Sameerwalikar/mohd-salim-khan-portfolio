@@ -109,7 +109,7 @@ export function Navbar() {
             <Scale className="h-5 w-5" />
           </div>
           <div className="hidden sm:block">
-            <p className="font-serif text-[14px] font-semibold leading-tight tracking-wide text-foreground">
+            <p className="text-[14px] font-semibold leading-tight tracking-wide text-foreground">
               Prof. Dr. M.S.B. Khan
             </p>
             <p className="text-[10px] tracking-[0.2em] text-gold/70 uppercase">
@@ -163,7 +163,7 @@ export function Navbar() {
                     <div className="overflow-hidden rounded-xl border border-gold/15 bg-navy-900/95 shadow-[var(--card-shadow-hover)] backdrop-blur-xl">
                       {item.megaMenu && (
                         <div className="border-b border-gold/10 px-4 py-3">
-                          <p className="font-serif text-sm font-semibold text-gold">
+                          <p className="text-sm font-semibold text-gold">
                             {item.label}
                           </p>
                         </div>
@@ -225,7 +225,7 @@ export function Navbar() {
                   />
                 </div>
                 <div>
-                  <p className="font-serif text-base font-semibold text-foreground">
+                  <p className="text-base font-semibold text-foreground">
                     {profile.shortName}
                   </p>
                   <p className="text-xs text-gold/70">Academic Legacy Platform</p>
