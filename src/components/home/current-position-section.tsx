@@ -11,7 +11,6 @@ import {
   Handshake,
 } from "lucide-react";
 import { profile } from "@/data/profile";
-import { cn } from "@/lib/utils";
 
 const leadershipRoles = [
   {

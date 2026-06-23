@@ -38,30 +38,38 @@ export const navigationItems: NavItem[] = [
     ],
   },
   {
-    label: "Research",
-    href: "#",
+    label: "Research & Scholarship",
+    href: "/research",
     megaMenu: true,
     children: [
-      { label: "Research Papers", href: "#", description: "Coming soon" },
-      { label: "Expertise Areas", href: "/about#expertise", description: "Scholarly focus areas" },
+      { label: "Research Papers", href: "/research?tab=journals#publications", description: "16 papers in national & international journals" },
+      { label: "Conferences", href: "/research?tab=conferences#publications", description: "Papers presented at academic conferences" },
+      { label: "FDPs & Workshops", href: "/research?tab=workshops#publications", description: "Faculty development programmes attended" },
     ],
   },
   {
-    label: "Publications",
-    href: "#",
+    label: "Intellectual Contributions",
+    href: "/intellectual-contributions",
     megaMenu: true,
     children: [
-      { label: "Books", href: "#", description: "Coming soon" },
-      { label: "Book Chapters", href: "#", description: "Coming soon" },
+      { label: "Books", href: "/intellectual-contributions?tab=books#contributions", description: "7 edited & authored books" },
+      { label: "Book Chapters", href: "/intellectual-contributions?tab=chapters#contributions", description: "9 chapters in edited volumes" },
+      { label: "Patents & IPR", href: "/intellectual-contributions?tab=ipr#contributions", description: "6 patents published" },
+      { label: "Design Registrations", href: "/intellectual-contributions?tab=ipr#contributions", description: "2 designs granted (India & UK)" },
     ],
   },
-  { label: "Books", href: "#" },
-  { label: "Patents & IPR", href: "#" },
-  { label: "Awards", href: "#" },
-  { label: "Events", href: "#" },
-  { label: "Certifications", href: "#" },
-  { label: "Media", href: "#" },
-  { label: "Contact", href: "#" },
+  {
+    label: "Recognition",
+    href: "/recognition",
+    megaMenu: true,
+    children: [
+      { label: "Awards", href: "/recognition?tab=awards#honours", description: "National & international honours" },
+      { label: "Certifications", href: "/recognition?tab=certifications#honours", description: "Certified mediator & arbitrator roles" },
+      { label: "Academic Achievements", href: "/recognition?tab=debate#honours", description: "Gold Medal, rankings & distinctions" },
+      { label: "Media", href: "/recognition?tab=media#honours", description: "Newspaper features & press coverage" },
+    ],
+  },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const downloadCV = {

@@ -6,6 +6,7 @@ import { CurrentPositionSection } from "@/components/home/current-position-secti
 import { FeaturedAchievementsSection } from "@/components/home/featured-achievements-section";
 import { FeaturedIPRSection } from "@/components/home/featured-ipr-section";
 import { QuoteSection } from "@/components/home/quote-section";
+import { ContactCTASection } from "@/components/home/contact-cta-section";
 
 export default function HomePage() {
   return (
@@ -17,6 +18,7 @@ export default function HomePage() {
       <FeaturedAchievementsSection />
       <FeaturedIPRSection />
       <QuoteSection />
+      <ContactCTASection />
     </PageTransition>
   );
 }

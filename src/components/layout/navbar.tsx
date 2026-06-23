@@ -43,37 +43,37 @@ const navItems: NavItem[] = [
   },
   {
     label: "Research & Scholarship",
-    href: "#",
+    href: "/research",
     megaMenu: true,
     children: [
-      { label: "Research Papers", href: "#", description: "16 papers in national & international journals" },
-      { label: "Conferences", href: "#", description: "Papers presented at academic conferences" },
-      { label: "FDPs & Workshops", href: "#", description: "Faculty development programmes attended" },
+      { label: "Research Papers", href: "/research?tab=journals#publications", description: "16 papers in national & international journals" },
+      { label: "Conferences", href: "/research?tab=conferences#publications", description: "Papers presented at academic conferences" },
+      { label: "FDPs & Workshops", href: "/research?tab=workshops#publications", description: "Faculty development programmes attended" },
     ],
   },
   {
     label: "Intellectual Contributions",
-    href: "#",
+    href: "/intellectual-contributions",
     megaMenu: true,
     children: [
-      { label: "Books", href: "#", description: "7 edited & authored books" },
-      { label: "Book Chapters", href: "#", description: "9 chapters in edited volumes" },
-      { label: "Patents & IPR", href: "#", description: "6 patents published" },
-      { label: "Design Registrations", href: "#", description: "2 designs granted (India & UK)" },
+      { label: "Books", href: "/intellectual-contributions?tab=books#contributions", description: "7 edited & authored books" },
+      { label: "Book Chapters", href: "/intellectual-contributions?tab=chapters#contributions", description: "9 chapters in edited volumes" },
+      { label: "Patents & IPR", href: "/intellectual-contributions?tab=ipr#contributions", description: "6 patents published" },
+      { label: "Design Registrations", href: "/intellectual-contributions?tab=ipr#contributions", description: "2 designs granted (India & UK)" },
     ],
   },
   {
     label: "Recognition",
-    href: "#",
+    href: "/recognition",
     megaMenu: true,
     children: [
-      { label: "Awards", href: "#", description: "National & international honours" },
-      { label: "Certifications", href: "#", description: "8 professional certificate courses" },
-      { label: "Academic Achievements", href: "#", description: "Gold Medal, rankings & distinctions" },
-      { label: "Media", href: "#", description: "Newspaper features & press coverage" },
+      { label: "Awards", href: "/recognition?tab=awards#honours", description: "National & international honours" },
+      { label: "Certifications", href: "/recognition?tab=certifications#honours", description: "Certified mediator & arbitrator roles" },
+      { label: "Academic Achievements", href: "/recognition?tab=debate#honours", description: "Gold Medal, rankings & distinctions" },
+      { label: "Media", href: "/recognition?tab=media#honours", description: "Newspaper features & press coverage" },
     ],
   },
-  { label: "Contact", href: "#" },
+  { label: "Contact", href: "/contact" },
 ];
 
 function isActive(pathname: string, href: string) {
@@ -174,6 +174,7 @@ export function Navbar() {
                             key={child.label}
                             href={child.href}
                             className="group block px-4 py-3 transition-colors hover:bg-navy-800/80"
+                            onClick={() => setOpenDropdown(null)}
                           >
                             <span className="block text-sm font-medium text-foreground group-hover:text-gold">
                               {child.label}
