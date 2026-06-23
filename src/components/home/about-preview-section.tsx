@@ -242,7 +242,7 @@ export function AboutPreviewSection() {
               className="mt-10"
             >
               <Button asChild variant="secondary" className="btn-glow group gap-2">
-                <Link href="/about">
+                <Link href="/about/biography">
                   Read Full Biography
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </Link>

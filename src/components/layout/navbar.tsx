@@ -22,7 +22,7 @@ const navItems: NavItem[] = [
     href: "/about",
     megaMenu: true,
     children: [
-      { label: "Biography", href: "/about#biography", description: "Professional narrative and scholarly journey" },
+      { label: "Biography", href: "/about/biography", description: "Professional narrative and scholarly journey" },
       { label: "Mission & Vision", href: "/about#mission", description: "Guiding principles and academic values" },
       { label: "Academic Qualifications", href: "/about#qualifications", description: "Degrees, diplomas and credentials" },
       { label: "Areas of Expertise", href: "/about#expertise", description: "Legal scholarship and focus areas" },
