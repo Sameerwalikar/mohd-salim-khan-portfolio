@@ -140,7 +140,7 @@ export function QuoteSection() {
           className="mt-10"
         >
           <Button asChild variant="secondary" className="btn-glow group gap-2">
-            <Link href="/about#mission">
+            <Link href="/about/mission-vision">
               Explore Academic Vision
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
             </Link>

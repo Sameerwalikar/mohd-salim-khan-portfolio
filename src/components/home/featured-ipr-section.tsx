@@ -6,6 +6,7 @@ import { motion, useInView } from "framer-motion";
 import { Lightbulb, PenTool, ArrowRight, Sparkles, Globe } from "lucide-react";
 import { featuredIPR } from "@/data/ipr";
 import { Button } from "@/components/ui/button";
+import { Academic3DCard, CardIcon, CardBadge, CardTitle, CardContent } from "@/components/ui/academic-3d-card";
 import { cn } from "@/lib/utils";
 
 export function FeaturedIPRSection() {
@@ -168,60 +169,70 @@ export function FeaturedIPRSection() {
                 initial={{ opacity: 0, y: 25 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.08, ease: "easeOut" }}
-                whileHover={{ y: -5, scale: 1.01 }}
-                className="group relative overflow-hidden rounded-xl border border-gold/[0.12] bg-navy-900/40 p-6 backdrop-blur-md transition-all duration-500 hover:border-gold/35 hover:shadow-[0_15px_40px_rgba(201,168,106,0.1)]"
               >
-                {/* Shine */}
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.03] to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-                <div className="absolute -right-6 -top-6 h-16 w-16 rounded-full bg-gold/[0.03] blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <Academic3DCard>
+                  <div className="group relative overflow-hidden rounded-xl border border-gold/[0.12] bg-navy-900/40 p-6 backdrop-blur-md transition-all duration-500 hover:border-gold/35 hover:shadow-[0_15px_40px_rgba(201,168,106,0.1)]">
+                    {/* Shine */}
+                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.03] to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                    <div className="absolute -right-6 -top-6 h-16 w-16 rounded-full bg-gold/[0.03] blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                <div className="relative z-10">
-                  <div className="mb-4 flex items-center justify-between">
-                    <div
-                      className={cn(
-                        "flex h-10 w-10 items-center justify-center rounded-lg border bg-navy-800/60 transition-all duration-300 group-hover:rotate-[8deg] group-hover:scale-110",
-                        isPatent
-                          ? "border-gold/20 text-gold/70 group-hover:text-gold"
-                          : "border-blue-400/20 text-blue-400/70 group-hover:text-blue-400"
-                      )}
-                    >
-                      {isPatent ? (
-                        <Lightbulb className="h-5 w-5" />
-                      ) : (
-                        <PenTool className="h-5 w-5" />
-                      )}
-                    </div>
-                    <div className="flex gap-2">
-                      <span
-                        className={cn(
-                          "rounded-full border px-2.5 py-0.5 text-xs font-medium",
-                          isPatent
-                            ? "border-gold/20 bg-gold/[0.06] text-gold/80"
-                            : "border-blue-400/20 bg-blue-400/[0.06] text-blue-300/80"
-                        )}
-                      >
-                        {item.type}
-                      </span>
-                      {item.jurisdiction && (
-                        <span className="inline-flex items-center gap-1 rounded-full border border-slate-600/20 bg-slate-800/30 px-2.5 py-0.5 text-xs text-slate-400">
-                          <Globe className="h-2.5 w-2.5" />
-                          {item.jurisdiction}
-                        </span>
-                      )}
+                    <div className="relative z-10">
+                      <div className="mb-4 flex items-center justify-between">
+                        <CardIcon>
+                          <div
+                            className={cn(
+                              "flex h-10 w-10 items-center justify-center rounded-lg border bg-navy-800/60 transition-all duration-300 group-hover:rotate-[8deg] group-hover:scale-110",
+                              isPatent
+                                ? "border-gold/20 text-gold/70 group-hover:text-gold"
+                                : "border-blue-400/20 text-blue-400/70 group-hover:text-blue-400"
+                            )}
+                          >
+                            {isPatent ? (
+                              <Lightbulb className="h-5 w-5" />
+                            ) : (
+                              <PenTool className="h-5 w-5" />
+                            )}
+                          </div>
+                        </CardIcon>
+                        <CardBadge>
+                          <div className="flex gap-2">
+                            <span
+                              className={cn(
+                                "rounded-full border px-2.5 py-0.5 text-xs font-medium",
+                                isPatent
+                                  ? "border-gold/20 bg-gold/[0.06] text-gold/80"
+                                  : "border-blue-400/20 bg-blue-400/[0.06] text-blue-300/80"
+                              )}
+                            >
+                              {item.type}
+                            </span>
+                            {item.jurisdiction && (
+                              <span className="inline-flex items-center gap-1 rounded-full border border-slate-600/20 bg-slate-800/30 px-2.5 py-0.5 text-xs text-slate-400">
+                                <Globe className="h-2.5 w-2.5" />
+                                {item.jurisdiction}
+                              </span>
+                            )}
+                          </div>
+                        </CardBadge>
+                      </div>
+
+                      <CardTitle>
+                        <h4 className="text-base font-semibold leading-snug text-white transition-colors duration-300 group-hover:text-gold/90 md:text-lg">
+                          {item.title}
+                        </h4>
+                      </CardTitle>
+
+                      <CardContent>
+                        <p className="mt-3 text-xs text-slate-400">
+                          {item.applicationOrDesignNumber}
+                        </p>
+                        <p className="mt-1 text-xs text-gold/60">
+                          {isPatent ? "Published" : "Granted"}: {item.publicationOrGrantDate}
+                        </p>
+                      </CardContent>
                     </div>
                   </div>
-
-                  <h4 className="text-base font-semibold leading-snug text-white transition-colors duration-300 group-hover:text-gold/90 md:text-lg">
-                    {item.title}
-                  </h4>
-
-                  <p className="mt-3 text-xs text-slate-400">
-                    {item.applicationOrDesignNumber}
-                  </p>
-                  <p className="mt-1 text-xs text-gold/60">
-                    {isPatent ? "Published" : "Granted"}: {item.publicationOrGrantDate}
-                  </p>
-                </div>
+                </Academic3DCard>
               </motion.div>
             );
           })}
@@ -235,7 +246,7 @@ export function FeaturedIPRSection() {
           className="mt-12 text-center"
         >
           <Button asChild variant="secondary" className="btn-glow group gap-2">
-            <Link href="/about#expertise">
+            <Link href="/about/areas-of-expertise">
               View Complete IPR Portfolio
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
             </Link>

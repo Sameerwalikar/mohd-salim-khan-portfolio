@@ -23,10 +23,10 @@ const navItems: NavItem[] = [
     megaMenu: true,
     children: [
       { label: "Biography", href: "/about/biography", description: "Professional narrative and scholarly journey" },
-      { label: "Mission & Vision", href: "/about#mission", description: "Guiding principles and academic values" },
-      { label: "Academic Qualifications", href: "/about#qualifications", description: "Degrees, diplomas and credentials" },
-      { label: "Areas of Expertise", href: "/about#expertise", description: "Legal scholarship and focus areas" },
-      { label: "Professional Profile", href: "/about#career-timeline", description: "Career overview and milestones" },
+      { label: "Mission & Vision", href: "/about/mission-vision", description: "Guiding principles and academic values" },
+      { label: "Academic Qualifications", href: "/about/academic-qualifications", description: "Degrees, diplomas and credentials" },
+      { label: "Areas of Expertise", href: "/about/areas-of-expertise", description: "Legal scholarship and focus areas" },
+      { label: "Professional Profile", href: "/about/professional-profile", description: "Career overview and milestones" },
     ],
   },
   {

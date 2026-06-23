@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Trophy, Award, Star } from "lucide-react";
 import { featuredAwards } from "@/data/awards";
+import { Academic3DCard, CardIcon, CardBadge, CardTitle, CardContent } from "@/components/ui/academic-3d-card";
 import { cn } from "@/lib/utils";
 
 export function FeaturedAchievementsSection() {
@@ -156,42 +157,54 @@ export function FeaturedAchievementsSection() {
                 delay: 0.55 + index * 0.1,
                 ease: "easeOut",
               }}
-              whileHover={{ y: -5, scale: 1.02 }}
               className={cn(
-                "group relative overflow-hidden rounded-xl border border-gold/[0.12] bg-navy-800/40 p-6 backdrop-blur-md transition-all duration-500",
-                "hover:border-gold/40 hover:shadow-[0_15px_40px_rgba(201,168,106,0.1)]",
-                // Make first secondary card slightly larger
                 index === 0 && "lg:col-span-2"
               )}
             >
-              {/* Shine */}
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.03] to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              <Academic3DCard>
+                <div
+                  className={cn(
+                    "group relative overflow-hidden rounded-xl border border-gold/[0.12] bg-navy-800/40 p-6 backdrop-blur-md transition-all duration-500",
+                    "hover:border-gold/40 hover:shadow-[0_15px_40px_rgba(201,168,106,0.1)]"
+                  )}
+                >
+                  {/* Shine */}
+                  <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.03] to-transparent transition-transform duration-700 group-hover:translate-x-full" />
 
-              {/* Subtle glow */}
-              <div className="absolute -right-6 -top-6 h-16 w-16 rounded-full bg-gold/[0.04] blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  {/* Subtle glow */}
+                  <div className="absolute -right-6 -top-6 h-16 w-16 rounded-full bg-gold/[0.04] blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-              <div className="relative z-10">
-                <div className="mb-4 flex items-center justify-between">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gold/15 bg-gold/[0.05] text-gold/70 transition-all duration-300 group-hover:rotate-[8deg] group-hover:scale-110 group-hover:text-gold">
-                    <Award className="h-5 w-5" />
+                  <div className="relative z-10">
+                    <div className="mb-4 flex items-center justify-between">
+                      <CardIcon>
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gold/15 bg-gold/[0.05] text-gold/70 transition-all duration-300 group-hover:rotate-[8deg] group-hover:scale-110 group-hover:text-gold">
+                          <Award className="h-5 w-5" />
+                        </div>
+                      </CardIcon>
+                      <CardBadge>
+                        <span className="rounded-full border border-gold/15 bg-gold/[0.05] px-2.5 py-0.5 text-xs font-semibold text-gold/80">
+                          {award.year}
+                        </span>
+                      </CardBadge>
+                    </div>
+
+                    <CardTitle>
+                      <h4 className="text-lg font-semibold leading-snug text-white transition-colors duration-300 group-hover:text-gold/90">
+                        {award.title}
+                      </h4>
+                    </CardTitle>
+
+                    <CardContent>
+                      <p className="mt-2.5 text-sm font-medium text-slate-300/80">
+                        {award.organization}
+                      </p>
+                      <p className="mt-2 text-xs text-slate-400">
+                        {award.description}
+                      </p>
+                    </CardContent>
                   </div>
-                  <span className="rounded-full border border-gold/15 bg-gold/[0.05] px-2.5 py-0.5 text-xs font-semibold text-gold/80">
-                    {award.year}
-                  </span>
                 </div>
-
-                <h4 className="text-lg font-semibold leading-snug text-white transition-colors duration-300 group-hover:text-gold/90">
-                  {award.title}
-                </h4>
-
-                <p className="mt-2.5 text-sm font-medium text-slate-300/80">
-                  {award.organization}
-                </p>
-
-                <p className="mt-2 text-xs text-slate-400">
-                  {award.description}
-                </p>
-              </div>
+              </Academic3DCard>
             </motion.div>
           ))}
         </div>
