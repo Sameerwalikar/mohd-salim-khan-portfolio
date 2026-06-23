@@ -14,12 +14,10 @@ import {
   FileText,
   PenTool,
   Award,
-  Users,
   Briefcase,
 } from "lucide-react";
 import { profile, expertiseAreas } from "@/data/profile";
 import { FadeUp } from "@/components/shared/fade-up";
-import { cn } from "@/lib/utils";
 
 /* ─── DATA ─── */
 

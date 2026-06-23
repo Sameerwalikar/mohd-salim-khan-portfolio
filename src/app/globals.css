@@ -14,7 +14,7 @@
   --background: var(--navy-900);
   --background-soft: var(--navy-800);
   --foreground: #e8edf4;
-  --muted: #94a3b8;
+  --muted: white;
   --border: rgba(201, 168, 106, 0.15);
   --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
   --card-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.45), 0 0 24px rgba(201, 168, 106, 0.08);
@@ -130,12 +130,12 @@ h2 {
 }
 
 .image-zoom img,
-.image-zoom > div {
+.image-zoom>div {
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .image-zoom:hover img,
-.image-zoom:hover > div {
+.image-zoom:hover>div {
   transform: scale(1.03);
 }
 
@@ -195,11 +195,13 @@ h2 {
 }
 
 @keyframes float-particle {
+
   0%,
   100% {
     transform: translateY(0) translateX(0);
     opacity: 0.3;
   }
+
   50% {
     transform: translateY(-20px) translateX(10px);
     opacity: 0.8;
@@ -211,11 +213,13 @@ h2 {
 }
 
 @keyframes glow-pulse {
+
   0%,
   100% {
     text-shadow: 0 0 20px color-mix(in srgb, var(--gold) 50%, transparent),
       0 0 40px color-mix(in srgb, var(--gold) 30%, transparent);
   }
+
   50% {
     text-shadow: 0 0 30px color-mix(in srgb, var(--gold) 70%, transparent),
       0 0 60px color-mix(in srgb, var(--gold) 40%, transparent);
@@ -230,6 +234,7 @@ h2 {
   from {
     height: 0;
   }
+
   to {
     height: var(--radix-accordion-content-height);
   }
@@ -239,6 +244,7 @@ h2 {
   from {
     height: var(--radix-accordion-content-height);
   }
+
   to {
     height: 0;
   }

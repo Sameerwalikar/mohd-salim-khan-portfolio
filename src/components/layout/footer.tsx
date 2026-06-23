@@ -9,10 +9,10 @@ const navigationLinks = [
   { label: "Home", href: "/" },
   { label: "About Me", href: "/about" },
   { label: "Career Journey", href: "/academic-journey" },
-  { label: "Research & Scholarship", href: "/about#expertise" },
-  { label: "Intellectual Contributions", href: "/#featured-ipr" },
-  { label: "Recognition", href: "/#featured-achievements" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Research & Scholarship", href: "/research" },
+  { label: "Intellectual Contributions", href: "/intellectual-contributions" },
+  { label: "Recognition", href: "/recognition" },
+  { label: "Contact", href: "/contact" },
 ];
 
 function scrollToTop() {

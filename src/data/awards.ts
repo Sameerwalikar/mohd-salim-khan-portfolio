@@ -13,7 +13,7 @@ export const awards: Award[] = [
     title: "Best Book Author Award",
     year: "2026",
     organization: "International Golden Iconic Educationalist Awards — International Academic & Research Association (IARA)",
-    description: "Awarded on 21st April 2026.",
+    description: "Awarded on 21st April 2026 for outstanding literary and scholarly contributions.",
     featured: true,
   },
   {
@@ -21,7 +21,7 @@ export const awards: Award[] = [
     title: "Author of the Year Award",
     year: "2025",
     organization: "EDU-Achievement Award and Symposium — EDVISHAN",
-    description: "Awarded on 20th July 2025.",
+    description: "Awarded on 20th July 2025 in recognition of exceptional book publications.",
     featured: true,
   },
   {
@@ -68,6 +68,34 @@ export const awards: Award[] = [
     year: "2018",
     organization: "World Achievers Foundation, Kolkata",
     description: "Outstanding contribution in Peace and Value Education — 22nd September 2018, Science City Auditorium, Kolkata.",
+  },
+  {
+    id: "ibrf-2018",
+    title: "IBRF Excellence Award 2018",
+    year: "2018",
+    organization: "International Benevolent Research Foundation, Kolkata",
+    description: "Outstanding professional and scholarly achievements — 24th August 2018, Kolkata.",
+  },
+  {
+    id: "adarsh-vidya-2018",
+    title: "Adarsh Vidya Saraswati Rashtriya Puraskar",
+    year: "2018",
+    organization: "Global Management Council, Ahmedabad",
+    description: "National recognition for excellence in educational services — 2nd August 2018, Ahmedabad.",
+  },
+  {
+    id: "outstanding-scholar-2018",
+    title: "Outstanding Research Scholar Award",
+    year: "2018",
+    organization: "India Global Chamber of Commerce, Industry and Agriculture, Pune",
+    description: "Recognized for excellence and research contribution — 4th February 2018, Pune.",
+  },
+  {
+    id: "young-scientist-2017",
+    title: "Young Scientist Award",
+    year: "2017",
+    organization: "International Multidisciplinary Research Foundation, Goa",
+    description: "Awarded for exceptional research aptitude in law — 30th March 2017, Goa.",
   },
 ];
 
