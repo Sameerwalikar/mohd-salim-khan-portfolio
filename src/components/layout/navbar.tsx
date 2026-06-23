@@ -6,11 +6,75 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, ChevronDown, Scale, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { navigationItems, downloadCV } from "@/data/navigation";
+import type { NavItem } from "@/data/navigation";
+import { downloadCV } from "@/data/navigation";
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+
+// Reorganized navigation structure reflecting Prof. Dr. M.S.B. Khan's
+// academic profile — grouped by scholarly significance, not flat listing.
+const navItems: NavItem[] = [
+  { label: "Home", href: "/" },
+  {
+    label: "About",
+    href: "/about",
+    megaMenu: true,
+    children: [
+      { label: "Biography", href: "/about#biography", description: "Professional narrative and scholarly journey" },
+      { label: "Mission & Vision", href: "/about#mission", description: "Guiding principles and academic values" },
+      { label: "Academic Qualifications", href: "/about#qualifications", description: "Degrees, diplomas and credentials" },
+      { label: "Areas of Expertise", href: "/about#expertise", description: "Legal scholarship and focus areas" },
+      { label: "Professional Profile", href: "/about#career-timeline", description: "Career overview and milestones" },
+    ],
+  },
+  {
+    label: "Career Journey",
+    href: "/academic-journey",
+    megaMenu: true,
+    children: [
+      { label: "Presidency University", href: "/academic-journey#institution-presidency-university", description: "Current assignment — Sr. Scale, Bangalore" },
+      { label: "Parul University", href: "/academic-journey#institution-parul-university", description: "Centre leadership & conferences" },
+      { label: "KLE College of Law", href: "/academic-journey#institution-kle-college", description: "In-Charge Principal & faculty" },
+      { label: "Legal Practice", href: "/academic-journey#institution-independent-practice-2021", description: "Independent legal practitioner" },
+      { label: "Corporate Leadership", href: "/academic-journey#institution-reliance-securities", description: "Reliance Securities, Speciality Restaurants & more" },
+    ],
+  },
+  {
+    label: "Research & Scholarship",
+    href: "#",
+    megaMenu: true,
+    children: [
+      { label: "Research Papers", href: "#", description: "16 papers in national & international journals" },
+      { label: "Conferences", href: "#", description: "Papers presented at academic conferences" },
+      { label: "FDPs & Workshops", href: "#", description: "Faculty development programmes attended" },
+    ],
+  },
+  {
+    label: "Intellectual Contributions",
+    href: "#",
+    megaMenu: true,
+    children: [
+      { label: "Books", href: "#", description: "7 edited & authored books" },
+      { label: "Book Chapters", href: "#", description: "9 chapters in edited volumes" },
+      { label: "Patents & IPR", href: "#", description: "6 patents published" },
+      { label: "Design Registrations", href: "#", description: "2 designs granted (India & UK)" },
+    ],
+  },
+  {
+    label: "Recognition",
+    href: "#",
+    megaMenu: true,
+    children: [
+      { label: "Awards", href: "#", description: "National & international honours" },
+      { label: "Certifications", href: "#", description: "8 professional certificate courses" },
+      { label: "Academic Achievements", href: "#", description: "Gold Medal, rankings & distinctions" },
+      { label: "Media", href: "#", description: "Newspaper features & press coverage" },
+    ],
+  },
+  { label: "Contact", href: "#" },
+];
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -33,12 +97,13 @@ export function Navbar() {
 
   return (
     <header
-    className={cn(
-      "fixed top-0 inset-x-0 z-50 transition-all duration-500",
-      scrolled ? "glass-nav py-3" : "glass-nav-transparent py-5"
-    )}
-  >
+      className={cn(
+        "fixed top-0 inset-x-0 z-50 transition-all duration-500",
+        scrolled ? "glass-nav py-3" : "glass-nav-transparent py-5"
+      )}
+    >
       <nav className="container-academic flex items-center justify-between gap-8 px-6 md:px-8">
+        {/* Logo / Brand */}
         <Link href="/" className="group flex shrink-0 items-center gap-2">
           <div className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/30 bg-navy-800 text-gold transition-all duration-300 group-hover:border-gold/60 group-hover:shadow-[0_0_20px_rgba(201,168,106,0.2)]">
             <Scale className="h-5 w-5" />
@@ -53,8 +118,9 @@ export function Navbar() {
           </div>
         </Link>
 
+        {/* Desktop Navigation */}
         <ul className="hidden items-center gap-0.5 xl:flex">
-          {navigationItems.map((item) => (
+          {navItems.map((item) => (
             <li
               key={item.label}
               className="relative"
@@ -81,6 +147,7 @@ export function Navbar() {
                 )}
               </Link>
 
+              {/* Dropdown */}
               <AnimatePresence>
                 {item.children && openDropdown === item.label && (
                   <motion.div
@@ -127,6 +194,7 @@ export function Navbar() {
           ))}
         </ul>
 
+        {/* Download CV button — Desktop */}
         <div className="hidden shrink-0 xl:block">
           <Button asChild variant="secondary" size="sm" className="btn-glow gap-2">
             <Link href={downloadCV.href}>
@@ -136,6 +204,7 @@ export function Navbar() {
           </Button>
         </div>
 
+        {/* Mobile menu */}
         <Sheet>
           <SheetTrigger asChild className="xl:hidden">
             <Button variant="ghost" size="icon" aria-label="Open menu">
@@ -144,6 +213,7 @@ export function Navbar() {
           </SheetTrigger>
           <SheetContent>
             <div className="mt-6 flex flex-col gap-1">
+              {/* Mobile header */}
               <div className="mb-6 flex items-center gap-3 border-b border-gold/10 pb-6">
                 <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-gold/30">
                   <Image
@@ -161,7 +231,9 @@ export function Navbar() {
                   <p className="text-xs text-gold/70">Academic Legacy Platform</p>
                 </div>
               </div>
-              {navigationItems.map((item, index) => (
+
+              {/* Mobile nav items */}
+              {navItems.map((item, index) => (
                 <motion.div
                   key={item.label}
                   initial={{ opacity: 0, x: 20 }}
@@ -192,6 +264,8 @@ export function Navbar() {
                   )}
                 </motion.div>
               ))}
+
+              {/* Mobile download CV */}
               <SheetClose asChild>
                 <Button asChild variant="secondary" className="mt-6 w-full btn-glow">
                   <Link href={downloadCV.href}>
