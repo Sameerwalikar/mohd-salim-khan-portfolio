@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { profile, expertiseAreas } from "@/data/profile";
 import { FadeUp } from "@/components/shared/fade-up";
+import { AboutPageHeroBackground } from "@/components/about/about-page-hero-background";
 
 /* ─── DATA ─── */
 
@@ -137,11 +138,7 @@ export function BiographyPageContent() {
     <div ref={sectionRef}>
       {/* ══════ SECTION 1: PAGE HERO ══════ */}
       <section className="relative overflow-hidden bg-navy-900 pt-32 pb-16 md:pt-36 md:pb-20">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-[#091422] to-navy-900" />
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(201,168,106,0.04)_0%,transparent_70%)] blur-[100px]" />
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
-        </div>
+        <AboutPageHeroBackground />
 
         <div className="container-academic relative z-10 px-4 md:px-6">
           {/* Breadcrumb */}

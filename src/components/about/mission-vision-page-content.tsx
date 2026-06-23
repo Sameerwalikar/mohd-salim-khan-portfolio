@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { profile } from "@/data/profile";
 import { FadeUp } from "@/components/shared/fade-up";
+import { AboutPageHeroBackground } from "@/components/about/about-page-hero-background";
 
 /* ─── DATA ─── */
 
@@ -147,21 +148,7 @@ export function MissionVisionPageContent() {
         ref={heroRef}
         className="relative overflow-hidden bg-navy-900 pt-32 pb-20 md:pt-40 md:pb-28"
       >
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-[#091422] to-navy-900" />
-          <div className="absolute left-1/2 top-1/3 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(201,168,106,0.05)_0%,transparent_60%)] blur-[100px]" />
-          <motion.div
-            className="absolute right-[15%] top-[20%] h-2 w-2 rounded-full bg-gold/8"
-            animate={{ y: [0, -15, 0], opacity: [0.03, 0.08, 0.03] }}
-            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute left-[20%] bottom-[30%] h-1.5 w-1.5 rounded-full bg-gold/6"
-            animate={{ y: [0, -10, 0], opacity: [0.02, 0.06, 0.02] }}
-            transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-          />
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
-        </div>
+        <AboutPageHeroBackground />
 
         <motion.div
           style={{ opacity: heroOpacity, y: heroY }}

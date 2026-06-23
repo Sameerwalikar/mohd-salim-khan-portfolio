@@ -12,7 +12,6 @@ import {
   Briefcase,
   Handshake,
   Lightbulb,
-  Users,
   BookOpen,
   PenTool,
   ScrollText,
@@ -20,6 +19,8 @@ import {
 } from "lucide-react";
 import { profile } from "@/data/profile";
 import { FadeUp } from "@/components/shared/fade-up";
+import { AboutPageHeroBackground } from "@/components/about/about-page-hero-background";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
 /* ─── DATA ─── */
 
@@ -67,17 +68,6 @@ const professionalRoles = [
   { title: "Patent Holder", description: "6 patents published and 2 design registrations granted across AI, blockchain, IoT and renewable energy domains." },
 ];
 
-const leadershipPositions = [
-  { title: "Coordinator Sports Committee", institution: "Presidency University, 2025 to Present" },
-  { title: "Coordinator UG Dissertation", institution: "Presidency University, 2025 to Present" },
-  { title: "Co-Coordinator Internship & Placement", institution: "Presidency University, 2025 to Present" },
-  { title: "In-Charge Principal", institution: "KLE College of Law, 2016 to 2017" },
-  { title: "Co-Coordinator CPGLS", institution: "Parul University, 2021 to 2024" },
-  { title: "Coordinator CCLP", institution: "Parul University, 2021 to 2024" },
-  { title: "Coordinator CESLPG", institution: "Parul University, 2021 to 2024" },
-  { title: "Head of Administration", institution: "Reliance Securities Ltd., 2008 to 2014" },
-];
-
 const certifications = [
   "40 Hours Mediation Training, Samvad Mediation Center, Lucknow",
   "UGC-Stride Online Certificate in Law and Social Transformation, MGM University (2023)",
@@ -99,11 +89,7 @@ export function ProfessionalProfilePageContent() {
     <div ref={sectionRef}>
       {/* ══════ SECTION 1: HERO ══════ */}
       <section className="relative overflow-hidden bg-navy-900 pt-32 pb-20 md:pt-36 md:pb-24">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-[#091422] to-navy-900" />
-          <div className="absolute left-1/2 top-1/3 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(201,168,106,0.04)_0%,transparent_70%)] blur-[100px]" />
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
-        </div>
+        <AboutPageHeroBackground />
 
         <div className="container-academic relative z-10 px-4 md:px-6">
           <FadeUp>
@@ -262,7 +248,7 @@ export function ProfessionalProfilePageContent() {
         </div>
       </section>
 
-      {/* ══════ SECTION 4: LEADERSHIP PROFILE ══════ */}
+      {/* ══════ SECTION 4: LEADERSHIP PROFILE — INFINITE SCROLL ══════ */}
       <section className="section-padding bg-navy-800">
         <div className="container-academic px-4 md:px-6">
           <FadeUp>
@@ -270,23 +256,64 @@ export function ProfessionalProfilePageContent() {
             <h2 className="mt-3 font-serif text-3xl font-medium text-white md:text-4xl">Leadership Positions</h2>
             <div className="mt-4 h-px w-14 bg-gradient-to-r from-gold/60 to-transparent" />
           </FadeUp>
+        </div>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {leadershipPositions.map((pos, index) => (
-              <motion.div
-                key={pos.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.1 + index * 0.05 }}
-                whileHover={{ y: -3 }}
-                className="group rounded-xl border border-gold/[0.08] bg-navy-900/40 p-6 transition-all duration-250 hover:border-gold/20 hover:shadow-[0_8px_25px_rgba(201,168,106,0.05)]"
-              >
-                <Users className="mb-3 h-5 w-5 text-gold/40 transition-colors duration-250 group-hover:text-gold/70" />
-                <h4 className="text-sm font-semibold text-white">{pos.title}</h4>
-                <p className="mt-2 text-xs text-slate-400">{pos.institution}</p>
-              </motion.div>
-            ))}
-          </div>
+        <div className="mt-12">
+          <InfiniteMovingCards
+            items={[
+              {
+                roleTitle: "Coordinator Sports Committee",
+                institution: "Presidency University, Bangalore",
+                duration: "2025 to Present",
+                description: "Leading sports activities, inter-university coordination and student engagement initiatives at the School of Law.",
+              },
+              {
+                roleTitle: "Coordinator UG Dissertation",
+                institution: "Presidency University, Bangalore",
+                duration: "2025 to Present",
+                description: "Guiding undergraduate research, supervising dissertations and mentoring students toward independent scholarly inquiry.",
+              },
+              {
+                roleTitle: "Co-Coordinator Internship & Placement",
+                institution: "Presidency University, Bangalore",
+                duration: "2025 to Present",
+                description: "Facilitating industry connections, internship placements and career development opportunities for law students.",
+              },
+              {
+                roleTitle: "In-Charge Principal",
+                institution: "KLE College of Law, Navi Mumbai",
+                duration: "2016 to 2017",
+                description: "Built institutional systems including admissions, BCI compliance, examinations, student discipline and administrative processes.",
+              },
+              {
+                roleTitle: "Head of Administration",
+                institution: "Reliance Securities Ltd., Mumbai",
+                duration: "2008 to 2014",
+                description: "Led pan-India administration. Made processes ISO compliant. Department adjudged Best Department 2012 to 2013. Management Special Bonus for 5 consecutive years.",
+              },
+              {
+                roleTitle: "Coordinator CCLP",
+                institution: "Parul University, Vadodara",
+                duration: "2021 to 2024",
+                description: "Centre for Constitutional Law and Policy. Organised constitutional law certificate courses and the Samvidhan Pe Charcha national event.",
+              },
+              {
+                roleTitle: "Coordinator CESLPG",
+                institution: "Parul University, Vadodara",
+                duration: "2021 to 2024",
+                description: "Centre of Excellence in Sports Law Policy and Governance. Organised international conference on Sports Law in India.",
+              },
+              {
+                roleTitle: "Co-Coordinator CPGLS",
+                institution: "Parul University, Vadodara",
+                duration: "2021 to 2024",
+                description: "Centre for Post Graduate Legal Studies. Supported research programmes and post-graduate academic administration.",
+              },
+            ]}
+            direction="left"
+            speed="slow"
+            pauseOnHover
+          />
         </div>
       </section>
 

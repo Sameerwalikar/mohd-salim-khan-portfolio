@@ -274,3 +274,13 @@ h2 {
     transform: translateX(200px) translateY(80px);
   }
 }
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.625rem));
+  }
+}
+
+.animate-scroll {
+  animation: scroll var(--animation-duration, 90s) var(--animation-direction, forwards) linear infinite;
+}
