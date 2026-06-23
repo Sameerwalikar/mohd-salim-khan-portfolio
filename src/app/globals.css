@@ -256,7 +256,6 @@ h2 {
 
 .animate-accordion-up {
   animation: accordion-up 0.3s ease-out;
-<<<<<<< HEAD
 }
 
 @keyframes shooting-star {
@@ -275,6 +274,3 @@ h2 {
     transform: translateX(200px) translateY(80px);
   }
 }
-=======
-}
->>>>>>> d9e39c1df93cf725c89103f86cdabea3565e2a56

@@ -15,7 +15,6 @@ import {
   Users,
   BookOpen,
   PenTool,
-  Trophy,
   ScrollText,
   BadgeCheck,
 } from "lucide-react";
@@ -117,33 +116,82 @@ export function ProfessionalProfilePageContent() {
             </nav>
           </FadeUp>
 
-          <div className="grid items-center gap-10 lg:grid-cols-[auto_1fr] lg:gap-14">
+          <div className="grid items-center gap-12 lg:grid-cols-[auto_1fr] lg:gap-16">
+            {/* Portrait with 3D hover */}
             <FadeUp delay={0.1}>
-              <div className="relative mx-auto w-48 lg:mx-0 lg:w-56">
-                <div className="absolute -inset-2 rounded-xl border border-gold/12" />
-                <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-gold/15 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
-                  <Image src={profile.portrait} alt={profile.name} fill className="object-cover object-top" sizes="224px" priority />
+              <motion.div
+                whileHover={{ y: -6 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                className="group relative mx-auto w-52 lg:mx-0 lg:w-60"
+              >
+                {/* Outer glow on hover */}
+                <div className="absolute -inset-4 rounded-xl bg-gold/[0.02] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
+                {/* Frame */}
+                <div className="absolute -inset-3 rounded-xl border border-gold/10 transition-colors duration-300 group-hover:border-gold/25" />
+                {/* Corner accents */}
+                <div className="absolute -left-3 -top-3 h-5 w-5 border-l-2 border-t-2 border-gold/25 transition-colors duration-300 group-hover:border-gold/50" />
+                <div className="absolute -bottom-3 -right-3 h-5 w-5 border-b-2 border-r-2 border-gold/25 transition-colors duration-300 group-hover:border-gold/50" />
+                {/* Image */}
+                <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-gold/15 shadow-[0_20px_50px_rgba(0,0,0,0.4)] transition-all duration-300 group-hover:border-gold/30 group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.5),0_0_30px_rgba(201,168,106,0.06)]">
+                  <Image
+                    src={profile.portrait}
+                    alt={profile.name}
+                    fill
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    sizes="240px"
+                    priority
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-900/40 via-transparent to-transparent" />
+                  {/* Gold inset border on hover */}
+                  <div className="absolute inset-0 rounded-lg border border-transparent transition-colors duration-300 group-hover:border-gold/15" />
                 </div>
-              </div>
+              </motion.div>
             </FadeUp>
 
+            {/* Profile content */}
             <FadeUp delay={0.15}>
-              <p className="text-xs font-medium tracking-[0.25em] text-gold/60 uppercase">Professional Profile</p>
-              <h1 className="mt-3 font-serif text-3xl font-medium tracking-tight text-white md:text-4xl lg:text-5xl">
-                {profile.name}
-              </h1>
-              <p className="mt-3 text-base text-gold/80 md:text-lg">{profile.currentPosition.title}</p>
-              <p className="mt-1 text-sm text-slate-400">
-                {profile.currentPosition.institution}, {profile.currentPosition.university}
-              </p>
-              <p className="mt-1 text-sm text-slate-400">25+ Years of Professional Experience</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {["Legal Scholar", "Academic Leader", "Researcher", "Mediator", "Author"].map((r) => (
-                  <span key={r} className="rounded-full border border-gold/15 bg-gold/[0.05] px-3 py-1 text-xs text-slate-300">{r}</span>
-                ))}
+              <div>
+                <p className="text-xs font-medium tracking-[0.25em] text-gold/60 uppercase">
+                  Professional Profile
+                </p>
+
+                <h1 className="mt-4 font-serif text-3xl font-medium tracking-tight text-white md:text-4xl lg:text-5xl">
+                  {profile.name}
+                </h1>
+
+                <p className="mt-4 text-lg text-gold/80 md:text-xl">
+                  {profile.currentPosition.title}
+                </p>
+
+                <p className="mt-2 text-base text-slate-400">
+                  {profile.currentPosition.institution}, {profile.currentPosition.university}
+                </p>
+
+                <p className="mt-1.5 text-sm text-slate-400/80">
+                  25+ Years of Professional Experience
+                </p>
+
+                {/* Premium tags with hover */}
+                <div className="mt-6 flex flex-wrap gap-2.5">
+                  {["Legal Scholar", "Academic Leader", "Researcher", "Mediator", "Author"].map((r) => (
+                    <motion.span
+                      key={r}
+                      whileHover={{ y: -2 }}
+                      transition={{ duration: 0.2 }}
+                      className="rounded-full border border-gold/15 bg-gold/[0.04] px-4 py-1.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:border-gold/35 hover:bg-gold/[0.08] hover:text-gold/90"
+                    >
+                      {r}
+                    </motion.span>
+                  ))}
+                </div>
+
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: 60 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="mt-7 h-px bg-gradient-to-r from-gold/60 to-transparent"
+                />
               </div>
-              <motion.div initial={{ width: 0 }} animate={{ width: 60 }} transition={{ duration: 1, delay: 0.5 }} className="mt-5 h-px bg-gradient-to-r from-gold/60 to-transparent" />
             </FadeUp>
           </div>
         </div>
@@ -158,14 +206,28 @@ export function ProfessionalProfilePageContent() {
             <div className="mt-4 h-px w-14 bg-gradient-to-r from-gold/60 to-transparent" />
           </FadeUp>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {professionalSnapshot.map((item, index) => {
               const Icon = item.icon;
               return (
-                <motion.div key={item.title} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: 0.2 + index * 0.08 }} className="group rounded-xl border border-gold/[0.1] bg-navy-900/40 p-6 transition-all duration-300 hover:border-gold/25 hover:shadow-[0_10px_30px_rgba(201,168,106,0.06)]">
-                  <Icon className="mb-4 h-5 w-5 text-gold/60 transition-colors group-hover:text-gold" />
-                  <h3 className="text-base font-semibold text-white">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-400">{item.summary}</p>
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.2 + index * 0.08 }}
+                  whileHover={{ y: -4 }}
+                  className="group relative overflow-hidden rounded-xl border border-gold/[0.1] bg-navy-900/40 p-7 transition-all duration-300 hover:border-gold/25 hover:shadow-[0_12px_35px_rgba(201,168,106,0.08)] md:p-8"
+                >
+                  {/* Subtle radial glow */}
+                  <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold/[0.03] blur-2xl opacity-0 transition-opacity duration-400 group-hover:opacity-100" />
+
+                  <div className="relative z-10">
+                    <Icon className="mb-5 h-6 w-6 text-gold/50 transition-colors duration-250 group-hover:text-gold" />
+                    <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                    <p className="mt-4 text-base leading-[1.75] text-slate-400/90">
+                      {item.summary}
+                    </p>
+                  </div>
                 </motion.div>
               );
             })}
@@ -182,11 +244,18 @@ export function ProfessionalProfilePageContent() {
             <div className="mt-4 h-px w-14 bg-gradient-to-r from-gold/60 to-transparent" />
           </FadeUp>
 
-          <div className="mt-12 grid gap-4 md:grid-cols-2">
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
             {professionalRoles.map((role, index) => (
-              <motion.div key={role.title} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: 0.1 + index * 0.06 }} className="group rounded-lg border border-gold/[0.08] bg-navy-800/30 p-5 transition-all duration-300 hover:border-gold/20">
-                <h3 className="text-base font-semibold text-white">{role.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400">{role.description}</p>
+              <motion.div
+                key={role.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.1 + index * 0.06 }}
+                whileHover={{ y: -3 }}
+                className="group rounded-xl border border-gold/[0.08] bg-navy-800/30 p-6 transition-all duration-250 hover:border-gold/20 hover:shadow-[0_8px_25px_rgba(201,168,106,0.05)]"
+              >
+                <h3 className="text-lg font-semibold text-white">{role.title}</h3>
+                <p className="mt-3 text-base leading-[1.75] text-slate-400/90">{role.description}</p>
               </motion.div>
             ))}
           </div>
@@ -202,12 +271,19 @@ export function ProfessionalProfilePageContent() {
             <div className="mt-4 h-px w-14 bg-gradient-to-r from-gold/60 to-transparent" />
           </FadeUp>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {leadershipPositions.map((pos, index) => (
-              <motion.div key={pos.title} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: 0.1 + index * 0.05 }} className="group rounded-lg border border-gold/[0.08] bg-navy-900/40 p-5 transition-all duration-300 hover:border-gold/20">
-                <Users className="mb-3 h-4 w-4 text-gold/50 transition-colors group-hover:text-gold" />
+              <motion.div
+                key={pos.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.1 + index * 0.05 }}
+                whileHover={{ y: -3 }}
+                className="group rounded-xl border border-gold/[0.08] bg-navy-900/40 p-6 transition-all duration-250 hover:border-gold/20 hover:shadow-[0_8px_25px_rgba(201,168,106,0.05)]"
+              >
+                <Users className="mb-3 h-5 w-5 text-gold/40 transition-colors duration-250 group-hover:text-gold/70" />
                 <h4 className="text-sm font-semibold text-white">{pos.title}</h4>
-                <p className="mt-1.5 text-xs text-slate-400">{pos.institution}</p>
+                <p className="mt-2 text-xs text-slate-400">{pos.institution}</p>
               </motion.div>
             ))}
           </div>
@@ -223,7 +299,7 @@ export function ProfessionalProfilePageContent() {
             <div className="mt-4 h-px w-14 bg-gradient-to-r from-gold/60 to-transparent" />
           </FadeUp>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {[
               { icon: FileText, value: "16+", label: "Research Papers" },
               { icon: BookOpen, value: "9+", label: "Book Chapters" },
@@ -233,10 +309,17 @@ export function ProfessionalProfilePageContent() {
             ].map((item, index) => {
               const Icon = item.icon;
               return (
-                <motion.div key={item.label} initial={{ opacity: 0, y: 15 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: 0.2 + index * 0.06 }} className="group rounded-xl border border-gold/[0.1] bg-navy-800/30 p-5 text-center transition-all duration-300 hover:border-gold/25">
-                  <Icon className="mx-auto mb-3 h-5 w-5 text-gold/60 transition-colors group-hover:text-gold" />
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.2 + index * 0.06 }}
+                  whileHover={{ y: -3 }}
+                  className="group rounded-xl border border-gold/[0.1] bg-navy-800/30 p-6 text-center transition-all duration-250 hover:border-gold/25 hover:shadow-[0_8px_25px_rgba(201,168,106,0.05)]"
+                >
+                  <Icon className="mx-auto mb-3 h-5 w-5 text-gold/50 transition-colors duration-250 group-hover:text-gold" />
                   <p className="text-2xl font-bold text-white">{item.value}</p>
-                  <p className="mt-1 text-xs text-slate-400">{item.label}</p>
+                  <p className="mt-1.5 text-sm text-slate-400">{item.label}</p>
                 </motion.div>
               );
             })}
@@ -253,11 +336,17 @@ export function ProfessionalProfilePageContent() {
             <div className="mt-4 h-px w-14 bg-gradient-to-r from-gold/60 to-transparent" />
           </FadeUp>
 
-          <div className="mt-10 grid gap-3 md:grid-cols-2">
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
             {certifications.map((cert, index) => (
-              <motion.div key={cert} initial={{ opacity: 0, x: -10 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.3, delay: 0.1 + index * 0.04 }} className="group flex items-start gap-3 rounded-lg border border-gold/[0.06] bg-navy-900/30 px-5 py-4 transition-colors hover:border-gold/15">
-                <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-gold/50 transition-colors group-hover:text-gold" />
-                <p className="text-sm text-slate-300/90">{cert}</p>
+              <motion.div
+                key={cert}
+                initial={{ opacity: 0, x: -10 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.3, delay: 0.1 + index * 0.04 }}
+                className="group flex items-start gap-3 rounded-lg border border-gold/[0.06] bg-navy-900/30 px-6 py-5 transition-all duration-250 hover:border-gold/15 hover:shadow-[0_4px_15px_rgba(201,168,106,0.04)]"
+              >
+                <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-gold/40 transition-colors duration-250 group-hover:text-gold" />
+                <p className="text-sm leading-relaxed text-slate-300/90">{cert}</p>
               </motion.div>
             ))}
           </div>
@@ -279,7 +368,9 @@ export function ProfessionalProfilePageContent() {
             <blockquote className="-mt-4 mx-auto max-w-3xl font-serif text-xl leading-relaxed text-white/90 md:text-2xl md:leading-relaxed">
               {profile.mission}
             </blockquote>
-            <div className="mt-4"><span className="font-serif text-5xl text-gold/20" aria-hidden="true">&rdquo;</span></div>
+            <div className="mt-4">
+              <span className="font-serif text-5xl text-gold/20" aria-hidden="true">&rdquo;</span>
+            </div>
             <div className="mx-auto mt-5 h-px w-10 bg-gold/25" />
             <p className="mt-4 text-sm text-slate-400">Professional Philosophy</p>
           </FadeUp>
@@ -297,27 +388,29 @@ export function ProfessionalProfilePageContent() {
 
           <FadeUp delay={0.1}>
             <div className="mt-10 rounded-2xl border border-gold/[0.12] bg-navy-900/40 p-8 md:p-10">
-              <div className="grid gap-8 md:grid-cols-2">
+              <div className="grid gap-10 md:grid-cols-2">
                 <div>
                   <p className="text-sm font-medium text-gold/70">Institution</p>
-                  <p className="mt-1 text-lg font-semibold text-white">{profile.currentPosition.institution}</p>
-                  <p className="mt-0.5 text-sm text-slate-400">{profile.currentPosition.university}, {profile.currentPosition.location}</p>
-                  <p className="mt-4 text-sm font-medium text-gold/70">Designation</p>
-                  <p className="mt-1 text-base text-white">{profile.currentPosition.title}</p>
-                  <p className="mt-4 text-sm font-medium text-gold/70">Period</p>
-                  <p className="mt-1 text-sm text-slate-300">{profile.currentPosition.period}</p>
+                  <p className="mt-1.5 text-lg font-semibold text-white">{profile.currentPosition.institution}</p>
+                  <p className="mt-1 text-base text-slate-400">{profile.currentPosition.university}, {profile.currentPosition.location}</p>
+
+                  <p className="mt-6 text-sm font-medium text-gold/70">Designation</p>
+                  <p className="mt-1.5 text-base font-medium text-white">{profile.currentPosition.title}</p>
+
+                  <p className="mt-6 text-sm font-medium text-gold/70">Period</p>
+                  <p className="mt-1.5 text-sm text-slate-300">{profile.currentPosition.period}</p>
                 </div>
                 <div>
                   <p className="text-sm font-medium text-gold/70">Academic & Leadership Responsibilities</p>
-                  <ul className="mt-3 space-y-2.5">
+                  <ul className="mt-4 space-y-3">
                     {profile.currentPosition.coordinatorRoles.map((role) => (
-                      <li key={role} className="flex items-start gap-2 text-sm text-slate-300">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/50" />
+                      <li key={role} className="flex items-start gap-2.5 text-base text-slate-300">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/50" />
                         {role}
                       </li>
                     ))}
-                    <li className="flex items-start gap-2 text-sm text-slate-300">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/50" />
+                    <li className="flex items-start gap-2.5 text-base text-slate-300">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/50" />
                       Assistant Professor Law (Senior Scale)
                     </li>
                   </ul>
