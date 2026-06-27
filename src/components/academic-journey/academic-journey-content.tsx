@@ -2,7 +2,6 @@
 
 import { careerMilestones, academicJourneyOrder, type CareerMilestone } from "@/data/career";
 import { FadeUp } from "@/components/shared/fade-up";
-import { SectionHeader } from "@/components/shared/section-header";
 import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
@@ -11,7 +10,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { StickyYearNav } from "./sticky-year-nav";
-import { Building2, Briefcase, Scale } from "lucide-react";
+import { Building2, Briefcase, Scale, ChevronRight } from "lucide-react";
+import { AboutPageHeroBackground } from "@/components/about/about-page-hero-background";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const milestones = academicJourneyOrder
   .map((id) => careerMilestones.find((m) => m.id === id)!)
@@ -115,40 +117,68 @@ export function AcademicJourneyContent() {
   let cardIndex = 0;
 
   return (
-    <section className="section-padding bg-navy-900 pt-28 md:pt-32">
-      <div className="container-academic px-4 md:px-6">
-        <SectionHeader
-          eyebrow="Institutional Archive"
-          title="Academic Journey"
-          description="A comprehensive chronicle of professional assignments across academia, legal practice, and corporate administration — from Presidency University to Samrat Trading."
-          className="[&_div]:bg-gold"
-        />
+    <>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-navy-900 pt-32 pb-16 md:pt-36 md:pb-20">
+        <AboutPageHeroBackground />
+        <div className="container-academic relative z-10 px-4 md:px-6">
+          <FadeUp>
+            <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-1.5 text-sm text-slate-400">
+              <Link href="/" className="transition-colors hover:text-gold">Home</Link>
+              <ChevronRight className="h-3.5 w-3.5 text-slate-500" />
+              <span className="text-gold/80">Career Journey</span>
+            </nav>
+          </FadeUp>
 
-        <div className="flex gap-12">
-          <StickyYearNav />
+          <FadeUp delay={0.1}>
+            <p className="text-xs font-medium tracking-[0.25em] text-gold/60 uppercase">
+              Institutional Archive
+            </p>
+            <h1 className="mt-3 font-serif text-4xl font-medium tracking-tight text-white md:text-5xl">
+              Career Journey
+            </h1>
+            <p className="mt-4 max-w-2xl text-base text-slate-300/80 md:text-lg">
+              A comprehensive chronicle of professional assignments across academia, legal practice and corporate administration
+            </p>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: 80 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+              className="mt-5 h-px bg-gradient-to-r from-gold/70 to-transparent"
+            />
+          </FadeUp>
+        </div>
+      </section>
 
-          <div className="min-w-0 flex-1 space-y-16">
-            {sortedYears.map((year) => (
-              <div key={year} id={`year-${year}`} className="scroll-mt-28">
-                <div className="mb-8 flex items-center gap-4">
-                  <h3 className="font-serif text-3xl font-semibold text-gold">{year}</h3>
-                  <div className="h-px flex-1 bg-gold/15" />
+      {/* Content */}
+      <section className="section-padding bg-navy-900">
+        <div className="container-academic px-4 md:px-6">
+          <div className="flex gap-12">
+            <StickyYearNav />
+
+            <div className="min-w-0 flex-1 space-y-16">
+              {sortedYears.map((year) => (
+                <div key={year} id={`year-${year}`} className="scroll-mt-28">
+                  <div className="mb-8 flex items-center gap-4">
+                    <h3 className="font-serif text-3xl font-medium text-gold">{year}</h3>
+                    <div className="h-px flex-1 bg-gold/15" />
+                  </div>
+
+                  <div className="space-y-6">
+                    {groupedByYear[year].map((milestone) => (
+                      <InstitutionCard
+                        key={milestone.id}
+                        milestone={milestone}
+                        index={cardIndex++}
+                      />
+                    ))}
+                  </div>
                 </div>
-
-                <div className="space-y-6">
-                  {groupedByYear[year].map((milestone) => (
-                    <InstitutionCard
-                      key={milestone.id}
-                      milestone={milestone}
-                      index={cardIndex++}
-                    />
-                  ))}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

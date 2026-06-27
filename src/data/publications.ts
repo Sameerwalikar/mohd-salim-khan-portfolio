@@ -7,6 +7,7 @@ export interface Book {
   isbn: string;
   coEditor?: string;
   location?: string;
+  link?: string;
 }
 
 export interface BookChapter {
@@ -98,6 +99,7 @@ export const books: Book[] = [
     role: "Authored",
     date: "June 2023",
     isbn: "978-81-19338-36-8",
+    link: "https://www.amazon.in/Constitutional-Laws-India-Mohammed-Salim/dp/8119338367",
   },
   {
     id: "book-cyber-forensics",
