@@ -155,7 +155,7 @@ export function BiographyPageContent() {
                 About
               </Link>
               <ChevronRight className="h-3.5 w-3.5 text-slate-500" />
-              <span className="text-gold/80">Biography</span>
+              <span className="text-gold/80">About Me</span>
             </nav>
           </FadeUp>
 
@@ -164,7 +164,7 @@ export function BiographyPageContent() {
               Professional Narrative
             </p>
             <h1 className="mt-3 font-serif text-4xl font-medium tracking-tight text-white md:text-5xl">
-              Biography
+              About Me
             </h1>
             <p className="mt-4 max-w-xl text-base text-slate-300/80 md:text-lg">
               Professional Journey, Academic Leadership and Legal Scholarship
@@ -270,48 +270,7 @@ export function BiographyPageContent() {
       </section>
 
       {/* ══════ SECTION 3: PROFESSIONAL TIMELINE ══════ */}
-      <section className="section-padding relative bg-navy-800">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
-        </div>
-
-        <div className="container-academic relative z-10 px-4 md:px-6">
-          <FadeUp>
-            <p className="text-xs font-medium tracking-[0.25em] text-gold/70 uppercase">
-              Career Trajectory
-            </p>
-            <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-white md:text-4xl">
-              Professional Timeline
-            </h2>
-            <div className="mt-4 h-px w-16 bg-gradient-to-r from-gold/60 to-transparent" />
-          </FadeUp>
-
-          <div className="mt-12 space-y-0">
-            {timelineMilestones.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.2 + index * 0.06 }}
-                className="group relative border-l border-gold/15 py-6 pl-8 transition-colors hover:border-gold/30"
-              >
-                {/* Dot */}
-                <div className="absolute left-0 top-8 h-2.5 w-2.5 -translate-x-[5.5px] rounded-full border-2 border-gold/40 bg-navy-800 transition-colors group-hover:border-gold group-hover:bg-gold/20" />
-
-                <p className="text-xs font-medium text-gold/70">{item.period}</p>
-                <h3 className="mt-1 text-base font-semibold text-white md:text-lg">
-                  {item.position}
-                </h3>
-                <p className="mt-0.5 text-sm text-slate-400">{item.institution}</p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400/80">
-                  {item.summary}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* ══════ SECTION 4: ACADEMIC PROFILE SNAPSHOT ══════ */}
       <section className="section-padding bg-navy-900">
