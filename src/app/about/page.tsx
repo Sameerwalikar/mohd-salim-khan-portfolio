@@ -14,7 +14,7 @@ export default function AboutPage() {
       <MissionVisionSection />
       <QualificationsTimeline />
       <ExpertiseSection />
-      <CareerTimelineSection />
+      
     </PageTransition>
   );
 }
