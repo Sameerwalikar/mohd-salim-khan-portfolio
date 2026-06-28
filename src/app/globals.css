@@ -164,7 +164,7 @@ h2 {
 
 @media (min-width: 1024px) {
   .section-padding {
-    padding: 7rem 2rem;
+    padding: 2rem 2rem 5rem;
   }
 }
 
@@ -284,3 +284,55 @@ h2 {
 .animate-scroll {
   animation: scroll var(--animation-duration, 90s) var(--animation-direction, forwards) linear infinite;
 }
+
+/* Academic Legacy Card System */
+.academic-card {
+  background: color-mix(in srgb, var(--navy-800) 80%, transparent);
+  border: 1px solid rgba(148, 163, 184, 0.18); /* Muted slate/gray border */
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out, border-color 200ms ease-out;
+}
+
+.academic-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+  border-color: var(--gold) !important;
+}
+
+/* Card Title Underline Animation */
+.card-title-underline {
+  position: relative;
+  display: inline;
+}
+
+.card-title-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--gold);
+  transition: width 250ms ease-out;
+}
+
+.academic-card:hover .card-title-underline::after {
+  width: 100%;
+}
+
+/* Mega-Menu Navigation Dropdown */
+.dropdown-menu-container {
+  background-color: #071426 !important; /* Solid dark navy background */
+  border: 1px solid rgba(201, 168, 106, 0.15) !important; /* Gold border treatment */
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45) !important; /* Premium shadow */
+}
+
+.dropdown-menu-item {
+  border-left: 3px solid transparent;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.dropdown-menu-item:hover {
+  background-color: rgba(16, 42, 76, 0.5) !important; /* Muted navy bg highlight */
+  border-left-color: var(--gold) !important; /* Gold accent border on hover */
+}
+

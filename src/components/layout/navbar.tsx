@@ -159,7 +159,7 @@ export function Navbar() {
                       item.megaMenu ? "min-w-[320px]" : "min-w-[220px]"
                     )}
                   >
-                    <div className="overflow-hidden rounded-xl border border-gold/15 bg-navy-900/95 shadow-[var(--card-shadow-hover)] backdrop-blur-xl">
+                    <div className="dropdown-menu-container overflow-hidden rounded-xl backdrop-blur-xl">
                       {item.megaMenu && (
                         <div className="border-b border-gold/10 px-4 py-3">
                           <p className="text-sm font-semibold text-gold">
@@ -172,14 +172,14 @@ export function Navbar() {
                           <Link
                             key={child.label}
                             href={child.href}
-                            className="group block px-4 py-3 transition-colors hover:bg-navy-800/80"
+                            className="dropdown-menu-item group block px-4 py-3"
                             onClick={() => setOpenDropdown(null)}
                           >
-                            <span className="block text-sm font-medium text-foreground group-hover:text-gold">
+                            <span className="block text-sm font-medium text-foreground group-hover:text-gold transition-colors duration-200">
                               {child.label}
                             </span>
                             {child.description && (
-                              <span className="mt-0.5 block text-xs text-muted">
+                              <span className="mt-0.5 block text-xs text-slate-400">
                                 {child.description}
                               </span>
                             )}

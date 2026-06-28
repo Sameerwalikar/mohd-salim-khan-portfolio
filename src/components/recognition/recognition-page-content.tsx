@@ -137,13 +137,13 @@ export function RecognitionPageContent() {
             category: "awards",
             year: a.year,
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4 flex items-center justify-between gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
                       Trophy
                     </span>
-                    <span className="rounded-full border border-gold/15 bg-gold/[0.04] px-2.5 py-0.5 text-xs font-semibold text-gold/80">
+                    <span className="text-xs font-medium text-slate-400">
                       {a.year}
                     </span>
                   </div>
@@ -155,7 +155,7 @@ export function RecognitionPageContent() {
                     </div>
                     <div>
                       <h4 className="font-serif text-lg font-medium text-white group-hover:text-gold transition-colors leading-snug">
-                        {a.title}
+                        <span className="card-title-underline">{a.title}</span>
                       </h4>
                       <p className="mt-1 text-sm text-slate-300">
                         {a.organization}
@@ -166,6 +166,9 @@ export function RecognitionPageContent() {
                   <p className="mt-4 text-xs leading-relaxed text-slate-400">
                     {a.description}
                   </p>
+                </div>
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center justify-between text-xs text-slate-400">
+                  <span>Award &amp; Honour</span>
                 </div>
               </div>
             )
@@ -184,13 +187,13 @@ export function RecognitionPageContent() {
             category: "debate",
             year: d.year,
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4 flex items-center justify-between gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
                       Debate Honor
                     </span>
-                    <span className="rounded-full border border-gold/15 bg-gold/[0.04] px-2.5 py-0.5 text-xs font-semibold text-gold/80">
+                    <span className="text-xs font-medium text-slate-400">
                       {d.year}
                     </span>
                   </div>
@@ -202,7 +205,7 @@ export function RecognitionPageContent() {
                     </div>
                     <div>
                       <h4 className="font-serif text-base font-bold text-white transition-colors leading-snug">
-                        {d.title}
+                        <span className="card-title-underline">{d.title}</span>
                       </h4>
                       <p className="mt-1 text-sm text-slate-300 leading-relaxed font-serif">
                         {d.details}
@@ -210,12 +213,16 @@ export function RecognitionPageContent() {
                     </div>
                   </div>
                 </div>
-                {d.location && (
-                  <div className="mt-4 border-t border-gold/10 pt-2 flex items-center gap-1 text-xs text-slate-400">
-                    <MapPin className="h-3 w-3 text-gold/60" />
-                    {d.location}
-                  </div>
-                )}
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center justify-between text-xs text-slate-400">
+                  {d.location ? (
+                    <span className="flex items-center gap-1">
+                      <MapPin className="h-3 w-3 text-gold/60" />
+                      {d.location}
+                    </span>
+                  ) : (
+                    <span>Academic Merit</span>
+                  )}
+                </div>
               </div>
             )
           });
@@ -233,7 +240,7 @@ export function RecognitionPageContent() {
             category: "memberships",
             year: "",
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
@@ -248,7 +255,7 @@ export function RecognitionPageContent() {
                     </div>
                     <div>
                       <h4 className="font-serif text-base font-bold text-white transition-colors leading-snug">
-                        {m.name}
+                        <span className="card-title-underline">{m.name}</span>
                       </h4>
                       {m.details && (
                         <p className="mt-2 text-xs text-slate-400 font-serif">
@@ -257,6 +264,9 @@ export function RecognitionPageContent() {
                       )}
                     </div>
                   </div>
+                </div>
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center justify-between text-xs text-slate-400">
+                  <span>Life / Professional Member</span>
                 </div>
               </div>
             )
@@ -275,7 +285,7 @@ export function RecognitionPageContent() {
             category: "certifications",
             year: "",
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
@@ -290,13 +300,16 @@ export function RecognitionPageContent() {
                     </div>
                     <div>
                       <h4 className="font-serif text-lg font-medium text-white transition-colors">
-                        {cr.role}
+                        <span className="card-title-underline">{cr.role}</span>
                       </h4>
                       <p className="mt-2 text-sm leading-relaxed text-slate-400">
                         {cr.details}
                       </p>
                     </div>
                   </div>
+                </div>
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center justify-between text-xs text-slate-400">
+                  <span>Certified ADR Professional</span>
                 </div>
               </div>
             )
@@ -315,13 +328,13 @@ export function RecognitionPageContent() {
             category: "judging",
             year: ej.date,
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4 flex items-center justify-between gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
                       Academic Judging
                     </span>
-                    <span className="rounded-full border border-gold/15 bg-gold/[0.04] px-2.5 py-0.5 text-xs font-semibold text-gold/80">
+                    <span className="text-xs font-medium text-slate-400">
                       {ej.date}
                     </span>
                   </div>
@@ -333,7 +346,7 @@ export function RecognitionPageContent() {
                     </div>
                     <div>
                       <h4 className="font-serif text-base font-semibold text-white leading-relaxed">
-                        {ej.event}
+                        <span className="card-title-underline">{ej.event}</span>
                       </h4>
                       <p className="mt-2 text-sm text-slate-300">
                         Role: <span className="text-gold font-medium">{ej.role}</span>
@@ -343,6 +356,9 @@ export function RecognitionPageContent() {
                       </p>
                     </div>
                   </div>
+                </div>
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center justify-between text-xs text-slate-400">
+                  <span>Academic Evaluation</span>
                 </div>
               </div>
             )
@@ -361,13 +377,13 @@ export function RecognitionPageContent() {
             category: "media",
             year: pf.date,
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4 flex items-center justify-between gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
                       Press Mention
                     </span>
-                    <span className="rounded-full border border-gold/15 bg-gold/[0.04] px-2.5 py-0.5 text-xs font-semibold text-gold/80">
+                    <span className="text-xs font-medium text-slate-400">
                       {pf.date}
                     </span>
                   </div>
@@ -379,13 +395,16 @@ export function RecognitionPageContent() {
                     </div>
                     <div>
                       <h4 className="font-serif text-base font-semibold text-white leading-relaxed italic">
-                        &ldquo;{pf.title}&rdquo;
+                        &ldquo;<span className="card-title-underline">{pf.title}</span>&rdquo;
                       </h4>
                       <p className="mt-2 text-sm text-slate-300">
                         Outlet: <span className="text-slate-200 font-medium font-serif">{pf.outlet}</span>
                       </p>
                     </div>
                   </div>
+                </div>
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center justify-between text-xs text-slate-400">
+                  <span>Press Mention &amp; Features</span>
                 </div>
               </div>
             )
@@ -415,7 +434,7 @@ export function RecognitionPageContent() {
   return (
     <div ref={sectionRef}>
       {/* ══════ SECTION 1: PAGE HERO ══════ */}
-      <section className="relative overflow-hidden bg-navy-900 pt-32 pb-16 md:pt-36 md:pb-20">
+      <section className="relative overflow-hidden bg-navy-900 pt-32  md:pt-36 ">
         <AboutPageHeroBackground />
 
         <div className="container-academic relative z-10 px-4 md:px-6">
@@ -451,12 +470,7 @@ export function RecognitionPageContent() {
       {/* ══════ SECTION 2: INTERACTIVE RECOGNITION HUB ══════ */}
       <section id="honours" className="section-padding bg-navy-900 relative scroll-mt-28">
         <div className="container-academic px-4 md:px-6">
-          <SectionHeader
-            eyebrow="Trophy Cabinet &amp; Memberships"
-            title="Honours Hub"
-            description="Explore professional accolades, early student debate championships, life memberships, and news mentions."
-            className="[&_div]:bg-gold"
-          />
+         
 
           {/* Search and Filters Strip */}
           <div className="mt-8 flex flex-col items-stretch justify-between gap-4 border-b border-gold/10 pb-6 md:flex-row md:items-center">
@@ -507,7 +521,7 @@ export function RecognitionPageContent() {
                 className={`rounded-lg px-4 py-2 text-xs font-semibold tracking-wide transition-all uppercase ${
                   activeTab === tab.id
                     ? "bg-gold text-navy-900 shadow-[0_4px_16px_rgba(201,168,106,0.25)]"
-                    : "border border-gold/10 bg-navy-800 text-slate-400 hover:border-gold/20 hover:text-white"
+                    : "border border-gold/20 bg-navy-700 text-slate-300 hover:border-gold/40 hover:text-white"
                 }`}
               >
                 {tab.label}
@@ -518,14 +532,20 @@ export function RecognitionPageContent() {
           {/* Dynamic publications grid */}
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <AnimatePresence mode="popLayout">
-              {filteredItems.map((item) => (
+              {filteredItems.map((item, index) => (
                 <motion.div
                   key={item.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 12 }}
+                  transition={{
+                    type: "tween",
+                    ease: "easeOut",
+                    duration: 0.3,
+                    delay: index * 0.05,
+                    layout: { type: "spring", stiffness: 300, damping: 30 }
+                  }}
                 >
                   {item.element}
                 </motion.div>

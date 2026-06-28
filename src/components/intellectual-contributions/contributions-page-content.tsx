@@ -139,19 +139,28 @@ export function ContributionsPageContent() {
             category: "books",
             year,
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
+                {b.link && (
+                  <a
+                    href={b.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 z-10 cursor-pointer"
+                    aria-label={`View book: ${b.title}`}
+                  />
+                )}
                 <div>
                   <div className="mb-4 flex items-center justify-between gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
                       <Book className="h-3 w-3" />
                       Book — {b.role}
                     </span>
-                    <span className="rounded-full border border-gold/15 bg-gold/[0.04] px-2.5 py-0.5 text-xs font-semibold text-gold/80">
+                    <span className="text-xs font-medium text-slate-400">
                       {year || b.date}
                     </span>
                   </div>
                   <h4 className="font-serif text-lg font-medium text-white group-hover:text-gold transition-colors leading-snug">
-                    {b.title}
+                    <span className="card-title-underline">{b.title}</span>
                   </h4>
                   {b.coEditor && (
                     <p className="mt-2 text-xs text-slate-400">
@@ -163,18 +172,13 @@ export function ContributionsPageContent() {
                     {b.location && ` (${b.location})`}
                   </p>
                 </div>
-                <div className="mt-5 border-t border-gold/10 pt-3 flex items-center justify-between">
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center justify-between relative z-20">
                   <p className="font-mono text-xs text-slate-400">ISBN: {b.isbn}</p>
                   {b.link && (
-                    <a
-                      href={b.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 rounded-full border border-gold/20 bg-gold/[0.06] px-3 py-1 text-xs font-medium text-gold transition-all duration-200 hover:border-gold/40 hover:bg-gold/[0.12]"
-                    >
+                    <span className="inline-flex items-center gap-1 rounded-full border border-gold/20 bg-gold/[0.06] px-3 py-1 text-xs font-medium text-gold transition-all duration-200 hover:border-gold/40 hover:bg-gold/[0.12]">
                       <ExternalLink className="h-3 w-3" />
                       View Book
-                    </a>
+                    </span>
                   )}
                 </div>
               </div>
@@ -202,19 +206,28 @@ export function ContributionsPageContent() {
             category: "chapters",
             year,
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
+                {c.doi && c.doi !== "n/a" && (
+                  <a
+                    href={`https://doi.org/${c.doi}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 z-10 cursor-pointer"
+                    aria-label={`View chapter DOI: ${c.title}`}
+                  />
+                )}
                 <div>
                   <div className="mb-4 flex items-center justify-between gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
                       <BookOpen className="h-3 w-3" />
                       Book Chapter {c.chapterNo !== "Proceedings Chapter" && `(Ch. ${c.chapterNo})`}
                     </span>
-                    <span className="rounded-full border border-gold/15 bg-gold/[0.04] px-2.5 py-0.5 text-xs font-semibold text-gold/80">
+                    <span className="text-xs font-medium text-slate-400">
                       {year || c.date}
                     </span>
                   </div>
                   <h4 className="font-serif text-lg font-medium text-white group-hover:text-gold transition-colors leading-snug">
-                    {c.title}
+                    <span className="card-title-underline">{c.title}</span>
                   </h4>
                   <p className="mt-3 text-sm text-slate-400">
                     From: <span className="italic text-slate-200 font-medium font-serif">{c.bookTitle}</span>
@@ -229,27 +242,20 @@ export function ContributionsPageContent() {
                     {c.location && ` (${c.location})`}
                   </p>
                 </div>
-                <div className="mt-5 border-t border-gold/10 pt-3">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="font-mono text-xs text-slate-400 font-semibold">ISBN: {c.isbn}</span>
-                    <div className="flex items-center gap-2">
-                      {c.scopusIndexed && (
-                        <span className="rounded-sm border border-emerald-500/20 bg-emerald-500/[0.06] px-1.5 py-0.2 text-[10px] font-bold text-emerald-400 uppercase tracking-wide">
-                          Scopus
-                        </span>
-                      )}
-                      {c.doi && c.doi !== "n/a" && (
-                        <a
-                          href={`https://doi.org/${c.doi}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-0.5 text-xs text-gold/80 hover:text-gold"
-                        >
-                          DOI
-                          <ExternalLink className="h-2.5 w-2.5" />
-                        </a>
-                      )}
-                    </div>
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center justify-between relative z-20">
+                  <span className="font-mono text-xs text-slate-400 font-semibold">ISBN: {c.isbn}</span>
+                  <div className="flex items-center gap-2">
+                    {c.scopusIndexed && (
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">
+                        Scopus
+                      </span>
+                    )}
+                    {c.doi && c.doi !== "n/a" && (
+                      <span className="inline-flex items-center gap-0.5 text-xs text-gold/80 hover:text-gold">
+                        DOI
+                        <ExternalLink className="h-2.5 w-2.5" />
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -276,7 +282,7 @@ export function ContributionsPageContent() {
             category: "ipr",
             year,
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4 flex items-center justify-between gap-2">
                     <span
@@ -285,29 +291,27 @@ export function ContributionsPageContent() {
                       {isPatent ? <Lightbulb className="h-3 w-3" /> : <PenTool className="h-3 w-3" />}
                       {isPatent ? "Patent" : "Design Grant"}
                     </span>
-                    <span className="rounded-full border border-gold/15 bg-gold/[0.04] px-2.5 py-0.5 text-xs font-semibold text-gold/80">
+                    <span className="text-xs font-medium text-slate-400">
                       {year || ip.publicationOrGrantDate}
                     </span>
                   </div>
                   <h4 className="font-serif text-lg font-medium text-white group-hover:text-gold transition-colors leading-snug">
-                    {ip.title}
+                    <span className="card-title-underline">{ip.title}</span>
                   </h4>
                   <p className="mt-3 text-xs text-slate-400">
                     Number: <span className="font-mono text-slate-300">{ip.applicationOrDesignNumber}</span>
                   </p>
                 </div>
-                <div className="mt-5 border-t border-gold/10 pt-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-slate-300">
-                      Status: <span className="text-gold font-medium">{isPatent ? "Published" : "Granted"}</span>
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center justify-between">
+                  <span className="text-xs text-slate-300">
+                    Status: <span className="text-gold font-medium">{isPatent ? "Published" : "Granted"}</span>
+                  </span>
+                  {ip.jurisdiction && (
+                    <span className="inline-flex items-center gap-1 text-xs text-slate-400">
+                      <Globe className="h-3 w-3" />
+                      {ip.jurisdiction}
                     </span>
-                    {ip.jurisdiction && (
-                      <span className="inline-flex items-center gap-1 text-xs text-slate-400">
-                        <Globe className="h-3 w-3" />
-                        {ip.jurisdiction}
-                      </span>
-                    )}
-                  </div>
+                  )}
                 </div>
               </div>
             )
@@ -326,7 +330,7 @@ export function ContributionsPageContent() {
             category: "editorial",
             year: "",
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
@@ -335,7 +339,7 @@ export function ContributionsPageContent() {
                     </span>
                   </div>
                   <h4 className="font-serif text-lg font-medium text-white transition-colors">
-                    {er.journal}
+                    <span className="card-title-underline">{er.journal}</span>
                   </h4>
                   <p className="mt-3 text-sm text-slate-300 font-semibold">
                     Role: <span className="text-gold">{er.role}</span>
@@ -346,11 +350,10 @@ export function ContributionsPageContent() {
                     </p>
                   )}
                 </div>
-                {er.issn && (
-                  <div className="mt-5 border-t border-gold/10 pt-3">
-                    <p className="font-mono text-xs text-slate-500">{er.issn}</p>
-                  </div>
-                )}
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center justify-between text-xs text-slate-400">
+                  <span>Editorial Board</span>
+                  {er.issn && <span className="font-mono text-xs text-slate-500">{er.issn}</span>}
+                </div>
               </div>
             )
           });
@@ -369,19 +372,19 @@ export function ContributionsPageContent() {
             category: "curriculum",
             year: "",
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4 flex items-center justify-between gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
                       <Briefcase className="h-3 w-3" />
                       {cd.type}
                     </span>
-                    <span className="rounded-full border border-gold/15 bg-gold/[0.04] px-2.5 py-0.5 text-xs font-semibold text-gold/80">
+                    <span className="text-xs font-medium text-slate-400">
                       {cd.year}
                     </span>
                   </div>
                   <h4 className="font-serif text-lg font-medium text-white group-hover:text-gold transition-colors leading-snug">
-                    {cd.title}
+                    <span className="card-title-underline">{cd.title}</span>
                   </h4>
                   <p className="mt-2 text-xs text-gold/80">
                     Institution: <span className="text-slate-300 font-serif">{cd.institution}</span>
@@ -390,8 +393,8 @@ export function ContributionsPageContent() {
                     {cd.details}
                   </p>
                 </div>
-                <div className="mt-5 border-t border-gold/10 pt-3 flex items-center gap-1.5 text-xs text-slate-400">
-                  <FileCheck className="h-4 w-4 text-emerald-400" />
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center gap-1.5 text-xs text-slate-400">
+                  <FileCheck className="h-4 w-4 text-slate-400" />
                   Course Designed &amp; Conducted
                 </div>
               </div>
@@ -409,7 +412,7 @@ export function ContributionsPageContent() {
             category: "curriculum",
             year: "",
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
@@ -418,14 +421,14 @@ export function ContributionsPageContent() {
                     </span>
                   </div>
                   <h4 className="font-serif text-lg font-medium text-white transition-colors">
-                    {cr.role}
+                    <span className="card-title-underline">{cr.role}</span>
                   </h4>
                   <p className="mt-4 text-sm leading-relaxed text-slate-400">
                     {cr.details}
                   </p>
                 </div>
-                <div className="mt-5 border-t border-gold/10 pt-3 flex items-center gap-1.5 text-xs text-slate-400">
-                  <Award className="h-4 w-4 text-gold/60" />
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center gap-1.5 text-xs text-slate-400">
+                  <Award className="h-4 w-4 text-slate-400" />
                   Certified Practitioner
                 </div>
               </div>
@@ -446,19 +449,19 @@ export function ContributionsPageContent() {
             category: "professional",
             year: "",
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4 flex items-center justify-between gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
                       <Gavel className="h-3 w-3" />
                       Judging
                     </span>
-                    <span className="rounded-full border border-gold/15 bg-gold/[0.04] px-2.5 py-0.5 text-xs font-semibold text-gold/80">
+                    <span className="text-xs font-medium text-slate-400">
                       {ej.date}
                     </span>
                   </div>
                   <h4 className="font-serif text-base font-semibold text-white leading-relaxed">
-                    {ej.event}
+                    <span className="card-title-underline">{ej.event}</span>
                   </h4>
                   <p className="mt-3 text-sm text-slate-300">
                     Role: <span className="text-gold font-medium">{ej.role}</span>
@@ -467,8 +470,8 @@ export function ContributionsPageContent() {
                     Organizer: <span className="text-slate-300">{ej.organizer}</span>
                   </p>
                 </div>
-                <div className="mt-5 border-t border-gold/10 pt-3 text-xs text-slate-400 flex items-center gap-1.5">
-                  <CheckCircle className="h-4 w-4 text-emerald-400" />
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center gap-1.5 text-xs text-slate-400">
+                  <CheckCircle className="h-4 w-4 text-slate-400" />
                   Invited Evaluator
                 </div>
               </div>
@@ -486,7 +489,7 @@ export function ContributionsPageContent() {
             category: "professional",
             year: "",
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
@@ -495,7 +498,7 @@ export function ContributionsPageContent() {
                     </span>
                   </div>
                   <h4 className="font-serif text-base font-bold text-white">
-                    {m.name}
+                    <span className="card-title-underline">{m.name}</span>
                   </h4>
                   {m.details && (
                     <p className="mt-3 text-sm text-slate-400 font-serif">
@@ -503,8 +506,8 @@ export function ContributionsPageContent() {
                     </p>
                   )}
                 </div>
-                <div className="mt-5 border-t border-gold/10 pt-3 text-xs text-slate-400 flex items-center gap-1.5">
-                  <CheckCircle className="h-4 w-4 text-gold/60" />
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center gap-1.5 text-xs text-slate-400">
+                  <CheckCircle className="h-4 w-4 text-slate-400" />
                   Life / Professional Member
                 </div>
               </div>
@@ -522,26 +525,26 @@ export function ContributionsPageContent() {
             category: "professional",
             year: "",
             element: (
-              <div className="premium-card relative flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)]">
+              <div className="academic-card relative flex h-full flex-col justify-between rounded-xl p-6">
                 <div>
                   <div className="mb-4 flex items-center justify-between gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/25 bg-gold/10 px-2.5 py-0.5 text-xs font-semibold text-gold">
                       <Globe className="h-3 w-3" />
                       Featured in Press
                     </span>
-                    <span className="rounded-full border border-gold/15 bg-gold/[0.04] px-2.5 py-0.5 text-xs font-semibold text-gold/80">
+                    <span className="text-xs font-medium text-slate-400">
                       {pf.date}
                     </span>
                   </div>
                   <h4 className="font-serif text-base font-semibold text-white leading-relaxed italic">
-                    &ldquo;{pf.title}&rdquo;
+                    &ldquo;<span className="card-title-underline">{pf.title}</span>&rdquo;
                   </h4>
                   <p className="mt-3 text-sm text-slate-300">
                     Outlet: <span className="text-slate-200 font-medium">{pf.outlet}</span>
                   </p>
                 </div>
-                <div className="mt-5 border-t border-gold/10 pt-3 text-xs text-slate-400 flex items-center gap-1.5">
-                  <CheckCircle className="h-4 w-4 text-emerald-400" />
+                <div className="mt-auto pt-3 border-t border-gold/10 min-h-[44px] flex items-center gap-1.5 text-xs text-slate-400">
+                  <CheckCircle className="h-4 w-4 text-slate-400" />
                   Media Recognition
                 </div>
               </div>
@@ -559,7 +562,7 @@ export function ContributionsPageContent() {
   return (
     <div ref={sectionRef}>
       {/* ══════ SECTION 1: PAGE HERO ══════ */}
-      <section className="relative overflow-hidden bg-navy-900 pt-32 pb-16 md:pt-36 md:pb-20">
+      <section className="relative overflow-hidden bg-navy-900 pt-32  md:pt-36 ">
         <AboutPageHeroBackground />
 
         <div className="container-academic relative z-10 px-4 md:px-6">
@@ -595,12 +598,7 @@ export function ContributionsPageContent() {
       {/* ══════ SECTION 2: INTERACTIVE CONTRIBUTIONS HUB ══════ */}
       <section id="contributions" className="section-padding bg-navy-900 relative scroll-mt-28">
         <div className="container-academic px-4 md:px-6">
-          <SectionHeader
-            eyebrow="Portfolio of Innovations"
-            title="Intellectual Outputs"
-            description="Explore IPR registries, editorial leadership seats, published textbooks, and credit course curricula."
-            className="[&_div]:bg-gold"
-          />
+          
 
           {/* Search and Filters Strip */}
           <div className="mt-8 flex flex-col items-stretch justify-between gap-4 border-b border-gold/10 pb-6 md:flex-row md:items-center">
@@ -651,7 +649,7 @@ export function ContributionsPageContent() {
                 className={`rounded-lg px-4 py-2 text-xs font-semibold tracking-wide transition-all uppercase ${
                   activeTab === tab.id
                     ? "bg-gold text-navy-900 shadow-[0_4px_16px_rgba(201,168,106,0.25)]"
-                    : "border border-gold/10 bg-navy-800 text-slate-400 hover:border-gold/20 hover:text-white"
+                    : "border border-gold/20 bg-navy-700 text-slate-300 hover:border-gold/40 hover:text-white"
                 }`}
               >
                 {tab.label}
@@ -662,14 +660,20 @@ export function ContributionsPageContent() {
           {/* Dynamic contributions grid */}
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <AnimatePresence mode="popLayout">
-              {filteredItems.map((item) => (
+              {filteredItems.map((item, index) => (
                 <motion.div
                   key={item.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 12 }}
+                  transition={{
+                    type: "tween",
+                    ease: "easeOut",
+                    duration: 0.3,
+                    delay: index * 0.05,
+                    layout: { type: "spring", stiffness: 300, damping: 30 }
+                  }}
                 >
                   {item.element}
                 </motion.div>
