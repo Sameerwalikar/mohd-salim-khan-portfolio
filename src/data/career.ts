@@ -9,6 +9,7 @@ export interface CareerMilestone {
   achievements: string[];
   contributions: string[];
   notableCredits: string[];
+  link?: string;
 }
 
 export const careerMilestones: CareerMilestone[] = [
@@ -19,6 +20,7 @@ export const careerMilestones: CareerMilestone[] = [
     role: "Assistant Professor (Senior Scale) — Law",
     period: "January 2025 – Present",
     type: "academic",
+    link: "https://presidencyuniversity.in/faculty-staff/mohammed-salim-khan",
     responsibilities: [
       "Teaching law at Presidency School of Law, Presidency University, Bangalore",
       "Coordinating Sports Committee activities",
