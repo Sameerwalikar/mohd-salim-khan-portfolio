@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 import { profile } from "@/data/profile";
-import { downloadCV } from "@/data/navigation";
+import { downloadResume } from "@/data/navigation";
 import { FadeUp } from "@/components/shared/fade-up";
 import { Button } from "@/components/ui/button";
 import { AboutPageHeroBackground } from "@/components/about/about-page-hero-background";
@@ -439,10 +439,14 @@ export function ContactPageContent() {
                     Download the complete academic curriculum vitae including publications, patents, design registrations, and professional background.
                   </p>
                   <Button asChild variant="secondary" className="btn-glow gap-2">
-                    <Link href={downloadCV.href}>
+                    <a
+                      href={downloadResume.href}
+                      download={downloadResume.filename}
+                      aria-label={downloadResume.ariaLabel}
+                    >
                       <Download className="h-4 w-4" />
-                      {downloadCV.label}
-                    </Link>
+                      {downloadResume.label}
+                    </a>
                   </Button>
                 </div>
               </FadeUp>

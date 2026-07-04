@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Menu, ChevronDown, Scale, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { NavItem } from "@/data/navigation";
-import { downloadCV } from "@/data/navigation";
+import { downloadResume } from "@/data/navigation";
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -195,13 +195,17 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* Download CV button — Desktop */}
+        {/* Download Resume button — Desktop */}
         <div className="hidden shrink-0 xl:block">
           <Button asChild variant="secondary" size="sm" className="btn-glow gap-2">
-            <Link href={downloadCV.href}>
+            <a
+              href={downloadResume.href}
+              download={downloadResume.filename}
+              aria-label={downloadResume.ariaLabel}
+            >
               <Download className="h-4 w-4" />
-              {downloadCV.label}
-            </Link>
+              {downloadResume.label}
+            </a>
           </Button>
         </div>
 
@@ -266,13 +270,17 @@ export function Navbar() {
                 </motion.div>
               ))}
 
-              {/* Mobile download CV */}
+              {/* Mobile download Resume */}
               <SheetClose asChild>
                 <Button asChild variant="secondary" className="mt-6 w-full btn-glow">
-                  <Link href={downloadCV.href}>
+                  <a
+                    href={downloadResume.href}
+                    download={downloadResume.filename}
+                    aria-label={downloadResume.ariaLabel}
+                  >
                     <Download className="h-4 w-4" />
-                    {downloadCV.label}
-                  </Link>
+                    {downloadResume.label}
+                  </a>
                 </Button>
               </SheetClose>
             </div>

@@ -72,7 +72,9 @@ export const navigationItems: NavItem[] = [
   { label: "Contact", href: "/contact" },
 ];
 
-export const downloadCV = {
-  label: "Download CV",
-  href: "#",
+export const downloadResume = {
+  label: "Download Resume",
+  href: "/resume/Prof-Dr-Mohammed-Salim-B-Khan-Resume.pdf",
+  filename: "Prof-Dr-Mohammed-Salim-B-Khan-Resume.pdf",
+  ariaLabel: "Download Professor Mohammed Salim B. Khan's Resume",
 };
