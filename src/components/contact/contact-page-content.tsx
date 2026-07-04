@@ -1,20 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronRight,
+  ChevronLeft,
   Mail,
-  Phone,
-  MapPin,
   MessageSquare,
   Download,
   Send,
   Link2,
   CheckCircle2,
   Clock,
-  Building2
+  Building2,
 } from "lucide-react";
 
 import { profile } from "@/data/profile";
@@ -22,6 +21,205 @@ import { downloadCV } from "@/data/navigation";
 import { FadeUp } from "@/components/shared/fade-up";
 import { Button } from "@/components/ui/button";
 import { AboutPageHeroBackground } from "@/components/about/about-page-hero-background";
+
+function CalendarScheduler() {
+  const [currentDate, setCurrentDate] = useState(new Date(2026, 6, 1)); // Default to July 2026 as in screenshot
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDayIndex = new Date(year, month, 1).getDay();
+
+  const daysArray: (Date | null)[] = [];
+  for (let i = 0; i < firstDayIndex; i++) {
+    daysArray.push(null);
+  }
+  for (let i = 1; i <= daysInMonth; i++) {
+    daysArray.push(new Date(year, month, i));
+  }
+
+  const prevMonth = () => {
+    setCurrentDate(new Date(year, month - 1, 1));
+    setSelectedDate(null);
+    setSelectedTime(null);
+  };
+
+  const nextMonth = () => {
+    setCurrentDate(new Date(year, month + 1, 1));
+    setSelectedDate(null);
+    setSelectedTime(null);
+  };
+
+  const isWeekend = (date: Date) => {
+    const day = date.getDay();
+    return day === 0 || day === 6;
+  };
+
+  const isSelected = (date: Date) => {
+    if (!selectedDate) return false;
+    return (
+      date.getDate() === selectedDate.getDate() &&
+      date.getMonth() === selectedDate.getMonth() &&
+      date.getFullYear() === selectedDate.getFullYear()
+    );
+  };
+
+  const timeSlots = ["10:00 AM IST", "11:00 AM IST", "2:00 PM IST", "3:00 PM IST", "4:00 PM IST", "5:00 PM IST"];
+
+  const handleConfirm = () => {
+    if (!selectedDate || !selectedTime) return;
+    const formattedDate = selectedDate.toLocaleDateString("en-US", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+    const mailto = `mailto:${profile.email}?subject=Meeting%20Request%3A%20Academic%20Website%20Enquiry&body=Hello%20Professor%20Mohammed%20Salim%20B.%20Khan%2C%0A%0AI%20would%20like%20to%20request%20a%20meeting%20on%20${encodeURIComponent(formattedDate)}%20at%20${encodeURIComponent(selectedTime)}.%0A%0AThank%20you.`;
+    window.location.href = mailto;
+  };
+
+  return (
+    <div className="space-y-8">
+      <div className="rounded-xl border border-gold/10 bg-navy-950/80 p-6 md:p-8">
+        {/* Month Selector Header */}
+        <div className="flex items-center justify-between mb-6">
+          <button
+            onClick={prevMonth}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-gold/15 bg-navy-900 text-gold hover:border-gold hover:bg-gold/5 transition-all"
+            aria-label="Previous Month"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <h4 className="font-serif text-lg font-semibold text-white">
+            {monthNames[month]} {year}
+          </h4>
+          <button
+            onClick={nextMonth}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-gold/15 bg-navy-900 text-gold hover:border-gold hover:bg-gold/5 transition-all"
+            aria-label="Next Month"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+
+        {/* Days of Week Label Header */}
+        <div className="grid grid-cols-7 gap-2 mb-4 text-center">
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
+            <div key={d} className="text-xs font-semibold text-slate-400">
+              {d}
+            </div>
+          ))}
+        </div>
+
+        {/* Grid Days */}
+        <div className="grid grid-cols-7 gap-2 text-center">
+          {daysArray.map((date, idx) => {
+            if (!date) {
+              return <div key={`empty-${idx}`} className="aspect-square" />;
+            }
+            const weekend = isWeekend(date);
+            const selected = isSelected(date);
+            
+            return (
+              <button
+                key={date.toISOString()}
+                disabled={weekend}
+                onClick={() => {
+                  setSelectedDate(date);
+                  setSelectedTime(null);
+                }}
+                className={`aspect-square flex items-center justify-center rounded-lg text-sm transition-all ${
+                  weekend
+                    ? "text-slate-600 cursor-not-allowed opacity-40"
+                    : selected
+                    ? "bg-gold text-navy-950 font-bold shadow-[0_0_15px_rgba(201,168,106,0.4)]"
+                    : "text-slate-200 hover:bg-gold/10 hover:text-gold"
+                }`}
+              >
+                {date.getDate()}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Available Slots Section */}
+      <AnimatePresence mode="wait">
+        {selectedDate && (
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 15 }}
+            className="space-y-4"
+          >
+            <h4 className="font-serif text-base font-semibold text-white border-t border-gold/10 pt-6">
+              Available slots — {selectedDate.toLocaleDateString("en-US", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+              })}
+            </h4>
+            <div className="grid gap-3 grid-cols-2 sm:grid-cols-3">
+              {timeSlots.map((time) => (
+                <button
+                  key={time}
+                  onClick={() => setSelectedTime(time)}
+                  className={`py-3 px-4 rounded-lg border text-sm font-medium transition-all ${
+                    selectedTime === time
+                      ? "border-gold bg-gold/10 text-gold shadow-[0_0_15px_rgba(201,168,106,0.2)]"
+                      : "border-gold/15 bg-navy-950 text-slate-300 hover:border-gold/45 hover:text-gold"
+                  }`}
+                >
+                  {time}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Final confirmation and button */}
+      <AnimatePresence>
+        {selectedDate && selectedTime && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="space-y-3 pt-4"
+          >
+            <p className="text-sm font-serif text-slate-300">
+              Selected:{" "}
+              <span className="text-gold font-semibold">
+                {selectedDate.toLocaleDateString("en-US", {
+                  weekday: "long",
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric"
+                })}{" "}
+                at {selectedTime}
+              </span>
+            </p>
+            <button
+              onClick={handleConfirm}
+              className="w-full sm:w-auto px-8 py-3 rounded-lg bg-gold hover:bg-gold-light text-navy-900 text-sm font-semibold tracking-wide shadow-md transition-all hover:shadow-[0_4px_20px_rgba(201,168,106,0.3)] hover:-translate-y-0.5 active:translate-y-0"
+            >
+              Confirm &amp; Send Request
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export function ContactPageContent() {
   const [formData, setFormData] = useState({
@@ -35,8 +233,8 @@ export function ContactPageContent() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  // TODO: Insert real LinkedIn profile link when available
-  const linkedinUrl = "#"; 
+  const linkedinUrl = "https://www.linkedin.com/in/dr-mohammed-salim-khan/";
+  const mailtoUrl = `mailto:${profile.email}?subject=Academic%20Website%20Enquiry&body=Hello%20Professor%20Mohammed%20Salim%20B.%20Khan%2C%0A%0AI%20came%20across%20your%20academic%20portfolio%20and%20would%20like%20to%20connect%20regarding%0A%0AThank%20you.`;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -142,59 +340,53 @@ export function ContactPageContent() {
                   </div>
                 </FadeUp>
 
-                {/* 2. Email */}
+                {/* Action-Oriented CTA Cards */}
                 <FadeUp delay={0.2}>
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/20 bg-navy-900 text-gold shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                      <Mail className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-medium tracking-widest text-gold uppercase">Email</p>
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                    {/* Mail Card */}
+                    <div className="premium-card relative overflow-hidden rounded-xl border border-gold/15 bg-navy-800/30 p-5 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)] transition-all duration-300 flex flex-col justify-between">
+                      <div>
+                        <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-gold/20 bg-navy-900 text-gold">
+                          <Mail className="h-4 w-4" />
+                        </div>
+                        <h4 className="font-serif text-base font-semibold text-white">Mail Me</h4>
+                        <p className="mt-1.5 text-xs leading-relaxed text-slate-400">
+                          I usually respond within 24–48 hours.
+                        </p>
+                      </div>
                       <a
-                        href={`mailto:${profile.email}`}
-                        className="mt-1 block font-serif text-base text-slate-200 hover:text-gold transition-colors duration-200"
+                        href={mailtoUrl}
+                        aria-label="Send an email to the Professor"
+                        className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-gold/10 hover:bg-gold/25 border border-gold/30 text-gold text-xs font-semibold uppercase tracking-wider py-2.5 px-4 transition-all duration-200 text-center"
                       >
-                        {profile.email}
+                        Mail Me
                       </a>
                     </div>
-                  </div>
-                </FadeUp>
 
-                {/* 3. Phone */}
-                <FadeUp delay={0.25}>
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/20 bg-navy-900 text-gold shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                      <Phone className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-medium tracking-widest text-gold uppercase">Phone</p>
+                    {/* Book a Meeting Card */}
+                    <div className="premium-card relative overflow-hidden rounded-xl border border-gold/15 bg-navy-800/30 p-5 hover:border-gold/30 hover:shadow-[0_12px_32px_rgba(201,168,106,0.06)] transition-all duration-300 flex flex-col justify-between">
+                      <div>
+                        <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-gold/20 bg-navy-900 text-gold">
+                          <Clock className="h-4 w-4" />
+                        </div>
+                        <h4 className="font-serif text-base font-semibold text-white">Schedule Call</h4>
+                        <p className="mt-1.5 text-xs leading-relaxed text-slate-400">
+                          Pick a date and select an available time slot natively.
+                        </p>
+                      </div>
                       <a
-                        href={`tel:${profile.phone}`}
-                        className="mt-1 block font-serif text-base text-slate-200 hover:text-gold transition-colors duration-200"
+                        href="#schedule-call"
+                        aria-label="Scroll to calendar scheduler"
+                        className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-gold/10 hover:bg-gold/25 border border-gold/30 text-gold text-xs font-semibold uppercase tracking-wider py-2.5 px-4 transition-all duration-200 text-center"
                       >
-                        +91 {profile.phone}
+                        Book a Meeting
                       </a>
-                    </div>
-                  </div>
-                </FadeUp>
-
-                {/* 4. Address */}
-                <FadeUp delay={0.3}>
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/20 bg-navy-900 text-gold shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                      <MapPin className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-medium tracking-widest text-gold uppercase">Address</p>
-                      <p className="mt-1 text-sm leading-relaxed text-slate-300 font-serif">
-                        {profile.address}
-                      </p>
                     </div>
                   </div>
                 </FadeUp>
 
                 {/* 5. Messaging Channels */}
-                <FadeUp delay={0.35}>
+                <FadeUp delay={0.25}>
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/20 bg-navy-900 text-gold shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                       <MessageSquare className="h-5 w-5" />
@@ -215,8 +407,8 @@ export function ContactPageContent() {
                   </div>
                 </FadeUp>
 
-                {/* 6. LinkedIn (Placeholder) */}
-                <FadeUp delay={0.4}>
+                {/* 6. LinkedIn */}
+                <FadeUp delay={0.3}>
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/20 bg-navy-900 text-gold shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                       <Link2 className="h-5 w-5" />
@@ -225,9 +417,11 @@ export function ContactPageContent() {
                       <p className="text-xs font-medium tracking-widest text-gold uppercase">Professional Profile</p>
                       <a
                         href={linkedinUrl}
-                        className="mt-1 block text-sm text-slate-400 hover:text-gold transition-colors duration-200 italic"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1 block text-sm text-slate-400 hover:text-gold transition-colors duration-200"
                       >
-                        LinkedIn Profile (Connection pending)
+                        LinkedIn Profile
                       </a>
                     </div>
                   </div>
@@ -235,7 +429,7 @@ export function ContactPageContent() {
               </div>
 
               {/* CV Download Secondary CTA */}
-              <FadeUp delay={0.45}>
+              <FadeUp delay={0.35}>
                 <div className="premium-card relative overflow-hidden rounded-xl p-6 hover:shadow-[0_12px_32px_rgba(201,168,106,0.04)] transition-all duration-300">
                   <div className="absolute right-0 top-0 h-16 w-16 rounded-bl-full bg-gold/[0.03]" />
                   <h4 className="font-serif text-lg font-medium text-white mb-2">
@@ -408,6 +602,23 @@ export function ContactPageContent() {
             </div>
             
           </div>
+        </div>
+      </section>
+
+      {/* ══════ SECTION 3: INTERACTIVE NATIVE SCHEDULER ══════ */}
+      <section id="schedule-call" className="pb-24 bg-navy-900 relative border-t border-gold/10 pt-20">
+        <div className="container-academic px-4 md:px-6">
+          <FadeUp>
+            <div className="premium-card relative overflow-hidden rounded-2xl p-6 md:p-10 border border-gold/15 bg-navy-800/40">
+              <div className="max-w-2xl mb-8">
+                <h3 className="font-serif text-2xl font-medium text-white">Schedule Call</h3>
+                <p className="mt-2 text-sm text-slate-400">
+                  Pick a weekday and time slot (Asia/Kolkata). A pre-filled email will open so you can send your request.
+                </p>
+              </div>
+              <CalendarScheduler />
+            </div>
+          </FadeUp>
         </div>
       </section>
     </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   ChevronRight,
@@ -73,7 +74,7 @@ export default function AboutPage() {
             <FadeUp>
               <nav
                 aria-label="Breadcrumb"
-                className="mb-6 flex items-center gap-1.5 text-sm text-slate-400"
+                className="mb-8 flex items-center gap-1.5 text-sm text-slate-400"
               >
                 <Link href="/" className="transition-colors hover:text-gold">
                   Home
@@ -83,33 +84,80 @@ export default function AboutPage() {
               </nav>
             </FadeUp>
 
-            <div className="grid gap-8 lg:grid-cols-[1fr_450px] lg:items-end">
-              <FadeUp delay={0.1}>
+            <div className="grid gap-12 lg:grid-cols-[1fr_320px] items-center">
+              {/* Left Column - Heading & Intro */}
+              <FadeUp delay={0.1} className="order-2 lg:order-1">
                 <p className="text-xs font-medium tracking-[0.25em] text-gold/70 uppercase">
                   Academic Legacy
                 </p>
                 <h1 className="mt-3 font-serif text-4xl font-medium tracking-tight text-white md:text-5xl">
                   About the Professor
                 </h1>
-                <p className="mt-4 max-w-xl text-base text-slate-300/80 md:text-lg">
-                  Unveiling the career, guiding values, and scholastic contributions of a veteran legal expert.
+                <p className="mt-4 max-w-xl text-base text-slate-300/80 md:text-lg leading-relaxed">
+                  Unveiling the career, guiding values, and scholastic contributions of a veteran legal expert. Discover a journey spanning three decades of educational leadership and legal practitioner experience.
                 </p>
                 <div className="mt-6 h-px w-20 bg-gradient-to-r from-gold/60 to-transparent" />
               </FadeUp>
 
-              {/* Executive Summary Quote Callout */}
-              <FadeUp delay={0.2} className="relative">
-                <div className="rounded-xl border border-gold/15 bg-navy-800/40 p-6 backdrop-blur-sm lg:p-7">
-                  <div className="absolute -top-3 left-6 flex h-6 items-center gap-1.5 rounded-full border border-gold/25 bg-navy-900 px-3 text-[10px] font-medium tracking-wider text-gold uppercase">
-                    <Sparkles className="h-3 w-3" />
-                    Executive Summary
+              {/* Right Column - Portrait visual anchor */}
+              <FadeUp delay={0.2} className="order-1 lg:order-2 flex justify-center lg:justify-end">
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  className="group relative w-56 sm:w-64 lg:w-72"
+                >
+                  {/* Outer glow on hover */}
+                  <div className="absolute -inset-4 rounded-xl bg-gold/[0.02] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
+                  {/* Frame */}
+                  <div className="absolute -inset-3 rounded-xl border border-gold/10 transition-colors duration-300 group-hover:border-gold/25" />
+                  {/* Corner accents */}
+                  <div className="absolute -left-3 -top-3 h-5 w-5 border-l-2 border-t-2 border-gold/25 transition-colors duration-300 group-hover:border-gold/50" />
+                  <div className="absolute -bottom-3 -right-3 h-5 w-5 border-b-2 border-r-2 border-gold/25 transition-colors duration-300 group-hover:border-gold/50" />
+                  
+                  {/* Image wrapper */}
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-gold/15 shadow-[0_20px_50px_rgba(0,0,0,0.4)] transition-all duration-300 group-hover:border-gold/30 group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.5),0_0_30px_rgba(201,168,106,0.06)]">
+                    <Image
+                      src={profile.portrait}
+                      alt={profile.name}
+                      fill
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                      sizes="(max-w-1024px) 256px, 288px"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-900/40 via-transparent to-transparent" />
+                    {/* Gold inset border on hover */}
+                    <div className="absolute inset-0 rounded-lg border border-transparent transition-colors duration-300 group-hover:border-gold/15" />
                   </div>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-300/90 italic">
-                    &ldquo;{profile.executiveSummary}&rdquo;
-                  </p>
-                </div>
+
+                  {/* Floating Information Overlay Badges */}
+                  <div className="absolute -bottom-2 -left-2 z-20 rounded-lg border border-gold/20 bg-navy-900/90 px-3.5 py-2 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
+                    <p className="text-[10px] font-semibold tracking-wider text-gold uppercase">Experience</p>
+                    <p className="text-xs font-bold text-white">25+ Years</p>
+                  </div>
+
+                  <div className="absolute -top-2 -right-2 z-20 rounded-lg border border-gold/20 bg-navy-900/90 px-3 py-1.5 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
+                    <p className="text-[9px] font-semibold tracking-wider text-gold/80 uppercase">Legal Scholar &amp; Author</p>
+                  </div>
+                </motion.div>
               </FadeUp>
             </div>
+          </div>
+        </section>
+
+        {/* ══════ SECTION: EXECUTIVE SUMMARY ══════ */}
+        <section className="relative z-10 bg-navy-800/40 py-12 border-y border-gold/10">
+          <div className="container-academic px-4 md:px-6">
+            <FadeUp>
+              <div className="mx-auto max-w-4xl text-center">
+                <div className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-gold/25 bg-navy-900 px-3 py-1 text-[10px] font-medium tracking-wider text-gold uppercase">
+                  <Sparkles className="h-3 w-3" />
+                  Executive Summary
+                </div>
+                <blockquote className="font-serif text-lg md:text-xl leading-relaxed text-slate-200 italic">
+                  &ldquo;{profile.executiveSummary}&rdquo;
+                </blockquote>
+              </div>
+            </FadeUp>
           </div>
         </section>
 

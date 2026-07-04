@@ -1,9 +1,78 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Scale, Mail, Phone, MapPin, ArrowUp } from "lucide-react";
+import { Scale, ArrowUp } from "lucide-react";
 import { profile } from "@/data/profile";
+
+const reflectionsQuotes = [
+  {
+    text: "Education is the most powerful weapon which you can use to change the world.",
+    author: "Nelson Mandela"
+  },
+  {
+    text: "Cultivation of mind should be the ultimate aim of human existence.",
+    author: "Dr. B. R. Ambedkar"
+  },
+  {
+    text: "The law of love will be best understood and learned through little children.",
+    author: "Mahatma Gandhi"
+  },
+  {
+    text: "Law is mind without reason.",
+    author: "Aristotle"
+  },
+  {
+    text: "The only true wisdom is in knowing you know nothing.",
+    author: "Socrates"
+  },
+  {
+    text: "The only source of knowledge is experience.",
+    author: "Albert Einstein"
+  },
+  {
+    text: "Education breeds confidence. Confidence breeds hope. Hope breeds peace.",
+    author: "Confucius"
+  }
+];
+
+function QuoteRotator() {
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setIndex((prev) => (prev + 1) % reflectionsQuotes.length);
+        setVisible(true);
+      }, 500); // match fade out duration
+    }, 15000); // 15 seconds
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const quote = reflectionsQuotes[index];
+
+  return (
+    <div className="min-h-[120px] flex flex-col justify-start">
+      <motion.div
+        key={index}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: visible ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+        className="space-y-3"
+      >
+        <p className="font-serif text-sm leading-relaxed text-slate-300 italic">
+          &ldquo;{quote.text}&rdquo;
+        </p>
+        <p className="text-xs font-medium text-gold/80 tracking-wide">— {quote.author}</p>
+      </motion.div>
+    </div>
+  );
+}
+
 
 const navigationLinks = [
   { label: "Home", href: "/" },
@@ -87,42 +156,13 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3 — Professional Contact */}
+          {/* Column 3 — Academic Reflections */}
           <div>
             <h4 className="mb-5 flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-gold/60 uppercase">
               <span className="inline-block h-px w-4 bg-gold/25" />
-              Contact
+              Academic Reflections
             </h4>
-            <ul className="space-y-4">
-              <li>
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="group flex items-start gap-3"
-                >
-                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold/50 transition-all duration-300 group-hover:scale-110 group-hover:text-gold" />
-                  <span className="text-sm text-slate-400 transition-colors duration-300 group-hover:text-gold">
-                    {profile.email}
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`tel:${profile.phone}`}
-                  className="group flex items-start gap-3"
-                >
-                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold/50 transition-all duration-300 group-hover:scale-110 group-hover:text-gold" />
-                  <span className="text-sm text-slate-400 transition-colors duration-300 group-hover:text-gold">
-                    {profile.phone}
-                  </span>
-                </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold/50" />
-                <span className="text-sm text-slate-400">
-                  Bangalore, Karnataka, India
-                </span>
-              </li>
-            </ul>
+            <QuoteRotator />
           </div>
         </div>
 
