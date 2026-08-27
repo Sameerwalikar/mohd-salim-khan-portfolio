@@ -173,7 +173,7 @@ export function AboutPreviewSection() {
               <ProgressiveBlur visible={isHovered}>
                 <div className="space-y-3">
                   <h3 className="font-serif text-lg font-medium text-white md:text-xl">
-                    Prof. Dr. Mohammed Salim B. Khan
+                    Dr. Mohammed Salim B. Khan
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {[

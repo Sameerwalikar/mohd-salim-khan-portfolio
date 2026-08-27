@@ -1,6 +1,6 @@
 export const profile = {
-  name: "Professor Dr. Mohammed Salim B. Khan",
-  shortName: "Prof. Dr. Mohammed Salim B. Khan",
+  name: "Dr. Mohammed Salim B. Khan",
+  shortName: "Dr. Mohammed Salim B. Khan",
   initials: "Dr.Mohammed Salim B. Khan",
 
   email: "adv.msbk@gmail.com",

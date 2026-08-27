@@ -589,7 +589,7 @@ export function ContactPageContent() {
                             Message Sent Successfully
                           </h4>
                           <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-                            Thank you for your interest. Your message has been received, and Prof. Dr. M.S.B. Khan will review it shortly.
+                            Thank you for your interest. Your message has been received, and Dr. M.S.B. Khan will review it shortly.
                           </p>
                           <button
                             onClick={() => setSubmitSuccess(false)}

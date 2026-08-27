@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
-// Reorganized navigation structure reflecting Prof. Dr. M.S.B. Khan's
+// Reorganized navigation structure reflecting Dr. M.S.B. Khan's
 // academic profile — grouped by scholarly significance, not flat listing.
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
@@ -110,7 +110,7 @@ export function Navbar() {
           </div>
           <div className="hidden sm:block">
             <p className="text-[14px] font-semibold leading-tight tracking-wide text-foreground">
-              Prof. Dr. M.S.B. Khan
+              Dr. M.S.B. Khan
             </p>
             <p className="text-[10px] tracking-[0.2em] text-gold/70 uppercase">
               Academic Legacy

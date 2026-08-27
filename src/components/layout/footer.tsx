@@ -121,7 +121,7 @@ export function Footer() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-white">
-                  Prof. Dr. M.S.B. Khan
+                  Dr. M.S.B. Khan
                 </p>
                 <p className="text-[10px] tracking-[0.15em] text-gold/50 uppercase">
                   Academic Legacy Platform
