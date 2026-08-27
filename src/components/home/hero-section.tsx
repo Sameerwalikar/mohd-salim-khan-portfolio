@@ -51,7 +51,7 @@ export function HeroSection() {
           {/* Name */}
           <FadeUp delay={0.1}>
             <h1 className="font-serif text-4xl font-medium leading-[1.12] tracking-tight text-foreground sm:text-5xl md:text-[3.5rem] lg:text-[3.75rem]">
-              Prof. Dr. Mohammed
+              Dr. Mohammed
               <br />
               <span className="text-gold">Salim B. Khan</span>
             </h1>

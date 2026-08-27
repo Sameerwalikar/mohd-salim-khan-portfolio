@@ -221,7 +221,7 @@ export function MissionVisionPageContent() {
               {/* Supporting narrative */}
               <div className="mt-10 space-y-6 text-base leading-[1.85] text-slate-300/85 md:text-[17px]">
                 <p>
-                  Since entering legal education as a full-time academic in 2016, Prof. Dr. Mohammed
+                  Since entering legal education as a full-time academic in 2016, Dr. Mohammed
                   Salim B. Khan has consistently focused on bridging the gap between theoretical
                   legal scholarship and practical professional competence. His appointment as
                   In-Charge Principal at KLE College of Law (August 2016 to November 2017) required

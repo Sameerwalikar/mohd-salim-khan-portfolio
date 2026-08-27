@@ -338,7 +338,7 @@ export function ResearchPageContent() {
               Research &amp; Scholarship
             </h1>
             <p className="mt-4 max-w-2xl text-base text-slate-300/80 md:text-lg">
-              Explore the legal scholarship, peer-reviewed articles, and academic conference research of Prof. Dr. M.S.B. Khan.
+              Explore the legal scholarship, peer-reviewed articles, and academic conference research of Dr. M.S.B. Khan.
             </p>
             <div className="mt-5 h-px w-16 bg-gradient-to-r from-gold/60 to-transparent" />
           </FadeUp>
